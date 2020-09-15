@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   SafeAreaView,
@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import axios from 'axios';
+
 import SeasonAverages from './components/Averages/SeasonAverages';
 import EnterGameModule from './components/Game/EnterGameModule';
 import NewGameModal from './components/Game/NewGameModal';
@@ -15,6 +17,22 @@ import Trends from './components/Trends/Trends';
 const Dashboard = () => {
   const [displayAddGame, setDisplayAddGame] = useState(false);
   const [displayNewGame, setDisplayNewGame] = useState(false);
+  const [games, setGames] = useState();
+
+  // useEffect(() => {
+  //   handleCalls();
+  // }, []);
+
+  // const handleCalls = () => {
+  //   const games = () => {
+  //     axios
+  //       .get('http://localhost:4169/api/user/season/games')
+  //       .then((res) => res.data);
+  //   };
+  //   setGames(games);
+  // };
+  // console.log(games);
+
   return (
     <SafeAreaView style={styles.container}>
       <EnterGameModule
