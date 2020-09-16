@@ -65,42 +65,50 @@ const Trends = (props) => {
     }
   };
 
-  const graphData = props.games.games.map((ele) => {
-    const twoPointsMade = ele.field_goals_made - ele.three_made;
-    const points = twoPointsMade * 2 + ele.three_made * 3 + ele.free_throw_made;
-    switch (data) {
-      case 'pts':
-        return points;
+  let graphData = null;
 
-      case 'rebounds':
-        const rebounds = ele.offensive_rebound + ele.defensive_rebound;
+  props.games.games
+    ? (graphData = props.games.games
+        .slice(0, 11)
+        .reverse()
+        .map((ele) => {
+          const twoPointsMade = ele.field_goals_made - ele.three_made;
+          const points =
+            twoPointsMade * 2 + ele.three_made * 3 + ele.free_throw_made;
+          switch (data) {
+            case 'pts':
+              return points;
 
-        return rebounds;
+            case 'rebounds':
+              const rebounds = ele.offensive_rebound + ele.defensive_rebound;
 
-      case 'assists':
-        return ele.assist;
+              return rebounds;
 
-      case 'fgPer':
-        const percentage =
-          (ele.field_goals_made / ele.field_goals_attempted) * 100;
-        return percentage;
+            case 'assists':
+              return ele.assist;
 
-      case 'efgPer':
-        const shotCalcualtion = twoPointsMade + 1.5 * ele.three_made;
-        const percent = shotCalcualtion / ele.field_goals_attempted;
+            case 'fgPer':
+              const percentage =
+                (ele.field_goals_made / ele.field_goals_attempted) * 100;
+              return percentage;
 
-        return percent * 100;
-      case 'tsPer':
-        const firstAlgorithm =
-          ele.field_goals_attempted + 0.44 * ele.free_throw_shot;
-        const double = 2 * firstAlgorithm;
-        const perc = points / double;
-        const total = Math.round(perc * 10000) / 100;
-        return total;
-      case 'to':
-        return ele.turnover;
-    }
-  });
+            case 'efgPer':
+              const shotCalcualtion = twoPointsMade + 1.5 * ele.three_made;
+              const percent = shotCalcualtion / ele.field_goals_attempted;
+
+              return percent * 100;
+            case 'tsPer':
+              const firstAlgorithm =
+                ele.field_goals_attempted + 0.44 * ele.free_throw_shot;
+              const double = 2 * firstAlgorithm;
+              const perc = points / double;
+              const total = Math.round(perc * 10000) / 100;
+              return total;
+            case 'to':
+              return ele.turnover;
+          }
+        }))
+    : null;
 
   return (
     <View>
@@ -143,7 +151,7 @@ const Trends = (props) => {
           <Text>Turnovers</Text>
         </TouchableOpacity>
       </View>
-      <LineGraph data={graphData} />
+      {graphData ? <LineGraph data={graphData} /> : null}
     </View>
   );
 };

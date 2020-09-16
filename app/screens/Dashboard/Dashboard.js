@@ -20,7 +20,6 @@ import {setGames} from '../../../ducks/reducers/gamesReducer';
 const Dashboard = (props) => {
   const [displayAddGame, setDisplayAddGame] = useState(false);
   const [displayNewGame, setDisplayNewGame] = useState(false);
-  // const [games, setGames] = useState();
 
   useEffect(() => {
     axios.get('http://localhost:4169/api/user/season/games').then((res) => {
@@ -34,7 +33,11 @@ const Dashboard = (props) => {
         displayGame={setDisplayAddGame}
         display={displayAddGame}
       />
-      <NewGameModal displayGame={setDisplayNewGame} display={displayNewGame} />
+      <NewGameModal
+        setGames={props.setGames}
+        displayGame={setDisplayNewGame}
+        display={displayNewGame}
+      />
       <ScrollView>
         <TouchableOpacity
           style={styles.button}

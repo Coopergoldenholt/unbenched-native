@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
   const {type, payload} = action;
   switch (type) {
     case `${SET_GAMES}`:
-      return {...state, games: payload};
+      return {games: payload};
 
     default:
       return state;

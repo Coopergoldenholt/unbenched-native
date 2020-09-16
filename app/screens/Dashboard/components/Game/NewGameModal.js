@@ -9,6 +9,10 @@ import {
   Image,
 } from 'react-native';
 import Modal from 'react-native-modal';
+import axios from 'axios';
+import {connect} from 'react-redux';
+
+import {setGames} from '../../../../../ducks/reducers/gamesReducer';
 
 const NewGameModal = (props) => {
   const [fieldGoalsAttempted, setFieldGoalsAttempted] = useState(0);
@@ -60,6 +64,29 @@ const NewGameModal = (props) => {
     setFieldGoalsMade(fieldGoalsMade + integer);
     setThreePointMade(threePointMade + integer);
   };
+
+  const handleConfirm = async () => {
+    await axios
+      .post('http://localhost:4169/api/user/game', {
+        opponent: opponent,
+        fieldGoalsAtt: fieldGoalsAttempted,
+        fieldGoalsMade: fieldGoalsMade,
+        threePointAtt: threePointAttempted,
+        threePointMade: threePointMade,
+        freeThrowAtt: freeThrowAttempted,
+        freeThrowMade: freeThrowMade,
+        offRebound: offensiveRebound,
+        defRebound: defensiveRebound,
+        assists: assists,
+        block: block,
+        steal: steal,
+        turnover: turnover,
+        foul: foul,
+      })
+      .then((res) => props.setGames(res.data));
+    // props.setGames(games);
+  };
+
   return (
     <View>
       <Modal style={styles.modal} isVisible={props.display}>
@@ -420,7 +447,9 @@ const NewGameModal = (props) => {
                 style={styles.buttonCancel}>
                 <Text>Cancel</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonConfirm}>
+              <TouchableOpacity
+                style={styles.buttonConfirm}
+                onPress={() => handleConfirm()}>
                 <Text>Confirm</Text>
               </TouchableOpacity>
             </View>
@@ -431,7 +460,7 @@ const NewGameModal = (props) => {
   );
 };
 
-export default NewGameModal;
+export default connect(null, {setGames})(NewGameModal);
 
 const styles = StyleSheet.create({
   modal: {
