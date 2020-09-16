@@ -84,7 +84,7 @@ const NewGameModal = (props) => {
         foul: foul,
       })
       .then((res) => props.setGames(res.data));
-    // props.setGames(games);
+    handleCancel();
   };
 
   return (
