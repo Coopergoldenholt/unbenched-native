@@ -1,10 +1,10 @@
-import {SAVE_GAMES} from '../actionTypes';
+import {SET_GAMES} from '../actionTypes';
 
 const initialState = {};
 
-export const saveGames = (games) => {
+export const setGames = (games) => {
   return {
-    type: SAVE_GAMES,
+    type: SET_GAMES,
     payload: games,
   };
 };
@@ -12,7 +12,7 @@ export const saveGames = (games) => {
 export default function (state = initialState, action) {
   const {type, payload} = action;
   switch (type) {
-    case `${SAVE_GAMES}`:
+    case `${SET_GAMES}`:
       return {...state, games: payload};
 
     default:

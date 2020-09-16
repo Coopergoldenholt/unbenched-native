@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+
 import LineGraph from '../../../../components/LineGraph';
 
-const Trends = () => {
+const Trends = (props) => {
   const [ptsClicked, setPTSClicked] = useState(true);
   const [reboundsClicked, setReboundsClicked] = useState(false);
   const [assistsClicked, setAssitsClicked] = useState(false);
@@ -28,33 +30,77 @@ const Trends = () => {
       case 'pts':
         setFalse();
         setPTSClicked(true);
+        setData('pts');
         break;
       case 'rebounds':
         setFalse();
         setReboundsClicked(true);
+        setData('rebounds');
         break;
       case 'assists':
         setFalse();
         setAssitsClicked(true);
+        setData('assists');
         break;
       case 'fgPer':
         setFalse();
         setFgPerClicked(true);
+        setData('fgPer');
         break;
       case 'efgPer':
         setFalse();
         setEfgPerClicked(true);
+        setData('efgPer');
         break;
       case 'tsPer':
         setFalse();
         setTsPerClicked(true);
+        setData('tsPer');
         break;
       case 'to':
         setFalse();
         setToClicked(true);
+        setData('to');
         break;
     }
   };
+
+  const graphData = props.games.games.map((ele) => {
+    const twoPointsMade = ele.field_goals_made - ele.three_made;
+    const points = twoPointsMade * 2 + ele.three_made * 3 + ele.free_throw_made;
+    switch (data) {
+      case 'pts':
+        return points;
+
+      case 'rebounds':
+        const rebounds = ele.offensive_rebound + ele.defensive_rebound;
+
+        return rebounds;
+
+      case 'assists':
+        return ele.assist;
+
+      case 'fgPer':
+        const percentage =
+          (ele.field_goals_made / ele.field_goals_attempted) * 100;
+        return percentage;
+
+      case 'efgPer':
+        const shotCalcualtion = twoPointsMade + 1.5 * ele.three_made;
+        const percent = shotCalcualtion / ele.field_goals_attempted;
+
+        return percent * 100;
+      case 'tsPer':
+        const firstAlgorithm =
+          ele.field_goals_attempted + 0.44 * ele.free_throw_shot;
+        const double = 2 * firstAlgorithm;
+        const perc = points / double;
+        const total = Math.round(perc * 10000) / 100;
+        return total;
+      case 'to':
+        return ele.turnover;
+    }
+  });
 
   return (
     <View>
@@ -97,12 +143,14 @@ const Trends = () => {
           <Text>Turnovers</Text>
         </TouchableOpacity>
       </View>
-      <LineGraph />
+      <LineGraph data={graphData} />
     </View>
   );
 };
 
-export default Trends;
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps)(Trends);
 
 const styles = StyleSheet.create({
   buttonContainer: {

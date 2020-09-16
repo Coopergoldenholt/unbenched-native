@@ -8,30 +8,25 @@ import {
   Text,
 } from 'react-native';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 import SeasonAverages from './components/Averages/SeasonAverages';
 import EnterGameModule from './components/Game/EnterGameModule';
 import NewGameModal from './components/Game/NewGameModal';
 import Trends from './components/Trends/Trends';
 
-const Dashboard = () => {
+import {setGames} from '../../../ducks/reducers/gamesReducer';
+
+const Dashboard = (props) => {
   const [displayAddGame, setDisplayAddGame] = useState(false);
   const [displayNewGame, setDisplayNewGame] = useState(false);
-  const [games, setGames] = useState();
+  // const [games, setGames] = useState();
 
-  // useEffect(() => {
-  //   handleCalls();
-  // }, []);
-
-  // const handleCalls = () => {
-  //   const games = () => {
-  //     axios
-  //       .get('http://localhost:4169/api/user/season/games')
-  //       .then((res) => res.data);
-  //   };
-  //   setGames(games);
-  // };
-  // console.log(games);
+  useEffect(() => {
+    axios.get('http://localhost:4169/api/user/season/games').then((res) => {
+      props.setGames(res.data);
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,7 +58,9 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps, {setGames})(Dashboard);
 
 const styles = StyleSheet.create({
   container: {
