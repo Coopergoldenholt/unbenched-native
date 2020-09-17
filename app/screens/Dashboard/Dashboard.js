@@ -16,6 +16,7 @@ import NewGameModal from './components/Game/NewGameModal';
 import Trends from './components/Trends/Trends';
 
 import {setGames} from '../../../ducks/reducers/gamesReducer';
+import {saveAverages} from '../../../ducks/reducers/seasonReducer';
 
 const Dashboard = (props) => {
   const [displayAddGame, setDisplayAddGame] = useState(false);
@@ -25,8 +26,11 @@ const Dashboard = (props) => {
     axios.get('http://localhost:4169/api/user/season/games').then((res) => {
       props.setGames(res.data);
     });
+    axios.get('http://localhost:4169/api/user/season/averages').then((res) => {
+      props.saveAverages(res.data);
+    });
   }, []);
-
+  console.log(props.season);
   return (
     <SafeAreaView style={styles.container}>
       <EnterGameModule
@@ -63,7 +67,7 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, {setGames})(Dashboard);
+export default connect(mapStateToProps, {setGames, saveAverages})(Dashboard);
 
 const styles = StyleSheet.create({
   container: {

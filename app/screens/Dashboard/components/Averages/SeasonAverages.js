@@ -24,18 +24,9 @@ const SeasonAverages = (props) => {
     'TOV',
     'PF',
   ];
-  const shootingRowData = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-  const shootingGoalRowData = [
-    [1, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-  const otherRowData = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ];
+  const shootingRowData = [[0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  const shootingGoalRowData = [[1, 1, 0, 0, 0, 0, 0, 0, 0]];
+  const otherRowData = [[0, 0, 0, 0, 0, 0, 0, 0]];
   return (
     <View style={styles.container}>
       {props.type === 'season' ? (
