@@ -21,16 +21,25 @@ import {saveAverages} from '../../../ducks/reducers/seasonReducer';
 const Dashboard = (props) => {
   const [displayAddGame, setDisplayAddGame] = useState(false);
   const [displayNewGame, setDisplayNewGame] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:4169/api/user/season/games').then((res) => {
-      props.setGames(res.data);
-    });
-    axios.get('http://localhost:4169/api/user/season/averages').then((res) => {
-      props.saveAverages(res.data);
-    });
+    getProps();
   }, []);
-  console.log(props.season);
+  const getProps = async () => {
+    setLoading(true);
+    await axios
+      .get('http://localhost:4169/api/user/season/games')
+      .then((res) => {
+        props.setGames(res.data);
+      });
+    await axios
+      .get('http://localhost:4169/api/user/season/averages')
+      .then((res) => {
+        props.saveAverages(res.data);
+      });
+    setLoading(false);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <EnterGameModule
@@ -54,7 +63,7 @@ const Dashboard = (props) => {
           <Text>Start Game</Text>
         </TouchableOpacity>
         <View style={styles.card}>
-          <SeasonAverages type="season" />
+          {loading ? null : <SeasonAverages type="season" />}
           <SeasonAverages type="goals" />
         </View>
         <View style={styles.card}>

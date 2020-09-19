@@ -1,13 +1,29 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Table from '../../../../components/Table';
+import {connect} from 'react-redux';
 
 const SeasonAverages = (props) => {
+  const {
+    astAvg,
+    ptsAvg,
+    blockAvg,
+    drbAvg,
+    fgAvg,
+    fgaAvg,
+    ftaAvg,
+    ftmAvg,
+    orbAvg,
+    pfAvg,
+    stlAvg,
+    tovAvg,
+  } = props.averages;
   const shootingHeaderData = [
     'PTS',
     'FG',
     'FGA',
     'FG%',
+    '3P%',
     'TS%',
     'EFG%',
     'FT',
@@ -24,9 +40,18 @@ const SeasonAverages = (props) => {
     'TOV',
     'PF',
   ];
-  const shootingRowData = [[0, 0, 0, 0, 0, 0, 0, 0, 0]];
+
+  let fielGoalPerc = Math.round((fgAvg / fgaAvg) * 10000) / 100;
+
+  let threePointPerc = Math.round((threeMAvg / threeAAvg) * 10000) / 100;
+
+  const shootingRowData = [
+    [ptsAvg, fgAvg, fgaAvg, , fielGoalPerc, threePointPerc, 0, 0, 0, 0, 0],
+  ];
   const shootingGoalRowData = [[1, 1, 0, 0, 0, 0, 0, 0, 0]];
   const otherRowData = [[0, 0, 0, 0, 0, 0, 0, 0]];
+
+  console.log(props.averages);
   return (
     <View style={styles.container}>
       {props.type === 'season' ? (
@@ -49,7 +74,11 @@ const SeasonAverages = (props) => {
   );
 };
 
-export default SeasonAverages;
+const mapStateToProps = (state) => {
+  return state.season;
+};
+
+export default connect(mapStateToProps)(SeasonAverages);
 
 const styles = StyleSheet.create({
   container: {
