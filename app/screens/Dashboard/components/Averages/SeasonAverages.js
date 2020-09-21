@@ -41,7 +41,6 @@ const SeasonAverages = (props) => {
   const shootingGoalRowData = [[1, 1, 0, 0, 0, 0, 0, 0, 0]];
   const otherRowData = [[0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
-  console.log(props.averages);
   return (
     <View style={styles.container}>
       {props.type === 'season' ? (

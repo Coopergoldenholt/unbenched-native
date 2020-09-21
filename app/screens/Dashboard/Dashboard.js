@@ -16,7 +16,7 @@ import NewGameModal from './components/Game/NewGameModal';
 import Trends from './components/Trends/Trends';
 
 import {setGames} from '../../../ducks/reducers/gamesReducer';
-import {saveAverages} from '../../../ducks/reducers/seasonReducer';
+import {saveAverages, saveGoals} from '../../../ducks/reducers/seasonReducer';
 
 const Dashboard = (props) => {
   const [displayAddGame, setDisplayAddGame] = useState(false);
@@ -28,20 +28,23 @@ const Dashboard = (props) => {
   }, []);
   const getProps = async () => {
     setLoading(true);
-    await axios
-      .get('http://localhost:4169/api/user/season/averages')
+    axios.get('http://localhost:4169/api/user/season/averages').then((res) => {
+      props.saveAverages(res.data);
+    });
+    axios.get('http://localhost:4169/api/user/season/games').then((res) => {
+      props.setGames(res.data);
+    });
+    axios
+      .get(
+        `http://localhost:4169/api/user/season/goals/${props.user.user.defaultSeason.id}`,
+      )
       .then((res) => {
-        props.saveAverages(res.data);
-      });
-    await axios
-      .get('http://localhost:4169/api/user/season/games')
-      .then((res) => {
-        props.setGames(res.data);
+        console.log(res.data);
       });
 
     setLoading(false);
   };
-  console.log(props.season.averages);
+  console.log(props.season);
   return (
     <SafeAreaView style={styles.container}>
       <EnterGameModule
@@ -82,7 +85,9 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, {setGames, saveAverages})(Dashboard);
+export default connect(mapStateToProps, {setGames, saveAverages, saveGoals})(
+  Dashboard,
+);
 
 const styles = StyleSheet.create({
   container: {
