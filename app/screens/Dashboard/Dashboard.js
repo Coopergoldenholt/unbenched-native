@@ -29,17 +29,19 @@ const Dashboard = (props) => {
   const getProps = async () => {
     setLoading(true);
     await axios
-      .get('http://localhost:4169/api/user/season/games')
-      .then((res) => {
-        props.setGames(res.data);
-      });
-    await axios
       .get('http://localhost:4169/api/user/season/averages')
       .then((res) => {
         props.saveAverages(res.data);
       });
+    await axios
+      .get('http://localhost:4169/api/user/season/games')
+      .then((res) => {
+        props.setGames(res.data);
+      });
+
     setLoading(false);
   };
+  console.log(props.season.averages);
   return (
     <SafeAreaView style={styles.container}>
       <EnterGameModule
@@ -63,8 +65,12 @@ const Dashboard = (props) => {
           <Text>Start Game</Text>
         </TouchableOpacity>
         <View style={styles.card}>
-          {loading ? null : <SeasonAverages type="season" />}
-          <SeasonAverages type="goals" />
+          {props.season.averages ? (
+            <SeasonAverages averages={props.season.averages} type="season" />
+          ) : null}
+          {props.season.averages ? (
+            <SeasonAverages averages={props.season.averages} type="goals" />
+          ) : null}
         </View>
         <View style={styles.card}>
           <Trends />

@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Table from '../../../../components/Table';
-import {connect} from 'react-redux';
 
 const SeasonAverages = (props) => {
   const {
@@ -9,6 +8,8 @@ const SeasonAverages = (props) => {
     ptsAvg,
     blockAvg,
     drbAvg,
+    threeMAvg,
+    threeAAvg,
     fgAvg,
     fgaAvg,
     ftaAvg,
@@ -18,18 +19,8 @@ const SeasonAverages = (props) => {
     stlAvg,
     tovAvg,
   } = props.averages;
-  const shootingHeaderData = [
-    'PTS',
-    'FG',
-    'FGA',
-    'FG%',
-    '3P%',
-    'TS%',
-    'EFG%',
-    'FT',
-    'FTA',
-    'FT%',
-  ];
+  const shootingHeaderData = ['PTS', 'FG', 'FGA', 'FT', 'FTA'];
+  const percentageHeaderData = ['FG%', '3P%', 'FT%', 'EFG%', 'TS%'];
   const otherHeaderData = [
     'ORB',
     'DRB',
@@ -41,15 +32,14 @@ const SeasonAverages = (props) => {
     'PF',
   ];
 
-  let fielGoalPerc = Math.round((fgAvg / fgaAvg) * 10000) / 100;
+  let fieldGoalPerc = Math.round((fgAvg / fgaAvg) * 10000) / 100;
 
   let threePointPerc = Math.round((threeMAvg / threeAAvg) * 10000) / 100;
 
-  const shootingRowData = [
-    [ptsAvg, fgAvg, fgaAvg, , fielGoalPerc, threePointPerc, 0, 0, 0, 0, 0],
-  ];
+  const shootingRowData = [[ptsAvg, fgAvg, fgaAvg, 0, 0]];
+  const percentageData = [[fieldGoalPerc, threePointPerc, 0, 0, 0]];
   const shootingGoalRowData = [[1, 1, 0, 0, 0, 0, 0, 0, 0]];
-  const otherRowData = [[0, 0, 0, 0, 0, 0, 0, 0]];
+  const otherRowData = [[0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
   console.log(props.averages);
   return (
@@ -57,28 +47,21 @@ const SeasonAverages = (props) => {
       {props.type === 'season' ? (
         <>
           <Text style={styles.text}>Season Averages:</Text>
-          <Table rowData={shootingRowData} headerData={shootingHeaderData} />
-          <Table rowData={otherRowData} headerData={otherHeaderData} />
         </>
       ) : (
         <>
           <Text style={styles.text}>Goals:</Text>
-          <Table
-            rowData={shootingGoalRowData}
-            headerData={shootingHeaderData}
-          />
-          <Table rowData={otherRowData} headerData={otherHeaderData} />
         </>
       )}
+      <Table rowData={shootingRowData} headerData={shootingHeaderData} />
+      <Table rowData={otherRowData} headerData={otherHeaderData} />
+      <Table rowData={percentageData} headerData={percentageHeaderData} />
     </View>
   );
+  s;
 };
 
-const mapStateToProps = (state) => {
-  return state.season;
-};
-
-export default connect(mapStateToProps)(SeasonAverages);
+export default SeasonAverages;
 
 const styles = StyleSheet.create({
   container: {
