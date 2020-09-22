@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
 import LineGraph from '../../../../components/LineGraph';
+import Trending from './components/Trending';
 
 const Trends = (props) => {
   const [ptsClicked, setPTSClicked] = useState(true);
@@ -152,6 +153,7 @@ const Trends = (props) => {
         </TouchableOpacity>
       </View>
       {graphData ? <LineGraph data={graphData} /> : null}
+      {graphData ? <Trending data={graphData} /> : null}
     </View>
   );
 };

@@ -32,14 +32,34 @@ const SeasonAverages = (props) => {
     'PF',
   ];
 
+  const twoPointsMade = fgAvg - threeMAvg;
+
   let fieldGoalPerc = Math.round((fgAvg / fgaAvg) * 10000) / 100;
 
   let threePointPerc = Math.round((threeMAvg / threeAAvg) * 10000) / 100;
 
-  const shootingRowData = [[ptsAvg, fgAvg, fgaAvg, 0, 0]];
-  const percentageData = [[fieldGoalPerc, threePointPerc, 0, 0, 0]];
-  const shootingGoalRowData = [[1, 1, 0, 0, 0, 0, 0, 0, 0]];
-  const otherRowData = [[0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  let freeThrowPerc = Math.round((ftmAvg / ftaAvg) * 10000) / 100;
+
+  let totalRb = orbAvg + drbAvg;
+
+  //Effective Field Goal Formula
+  const shotCalcualtion = twoPointsMade + 1.5 * threeMAvg;
+  const efgPercent = shotCalcualtion / fgaAvg;
+  let effectFGPerc = Math.round(efgPercent * 10000) / 100;
+
+  //True Shooting Formula
+  const firstAlgorithm = fgaAvg + 0.44 * ftaAvg;
+  const double = 2 * firstAlgorithm;
+  const perc = ptsAvg / double;
+  const tsPerc = Math.round(perc * 10000) / 100;
+
+  const shootingRowData = [[ptsAvg, fgAvg, fgaAvg, ftmAvg, ftaAvg]];
+  const percentageData = [
+    [fieldGoalPerc, threePointPerc, freeThrowPerc, effectFGPerc, tsPerc],
+  ];
+  const otherRowData = [
+    [orbAvg, drbAvg, totalRb, astAvg, stlAvg, blockAvg, tovAvg, pfAvg],
+  ];
 
   return (
     <View style={styles.container}>

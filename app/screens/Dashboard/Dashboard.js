@@ -39,12 +39,12 @@ const Dashboard = (props) => {
         `http://localhost:4169/api/user/season/goals/${props.user.user.defaultSeason.id}`,
       )
       .then((res) => {
-        console.log(res.data);
+        props.saveGoals(res.data);
       });
 
     setLoading(false);
   };
-  console.log(props.season);
+
   return (
     <SafeAreaView style={styles.container}>
       <EnterGameModule
@@ -71,8 +71,8 @@ const Dashboard = (props) => {
           {props.season.averages ? (
             <SeasonAverages averages={props.season.averages} type="season" />
           ) : null}
-          {props.season.averages ? (
-            <SeasonAverages averages={props.season.averages} type="goals" />
+          {props.season.goals ? (
+            <SeasonAverages averages={props.season.goals} type="goals" />
           ) : null}
         </View>
         <View style={styles.card}>
