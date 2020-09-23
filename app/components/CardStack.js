@@ -4,34 +4,65 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 
 const CardStack = () => {
   return (
-    <Swiper
-      cards={['DO', 'MORE', 'OF', 'WHAT', 'MAKES', 'YOU', 'HAPPY']}
-      renderCard={(card) => {
-        return (
-          <View style={styles.card}>
-            <Text style={styles.text}>{card}</Text>
-          </View>
-        );
-      }}
-      onSwiped={(cardIndex) => {
-        console.log(cardIndex);
-      }}
-      onSwipedAll={() => {
-        console.log('onSwipedAll');
-      }}
-      cardIndex={0}
-      backgroundColor={'white'}
-      stackSeparation={0}
-      stackScale={0}
-      stackSize={3}>
-      {/* <Button
+    <View style={styles.container}>
+      <Swiper
+        cards={[
+          'DO',
+          'MORE',
+          'OF',
+          'WHAT',
+          'MAKES',
+          'YOU',
+          'HAPPY',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+          'Stuff',
+        ]}
+        renderCard={(card) => {
+          return (
+            <View style={styles.container}>
+              <View style={styles.card}>
+                <Text style={styles.text}>{card}</Text>
+              </View>
+            </View>
+          );
+        }}
+        onSwiped={(cardIndex) => {
+          console.log(cardIndex);
+        }}
+        onSwipedAll={() => {
+          console.log('onSwipedAll');
+        }}
+        cardIndex={0}
+        backgroundColor={'blue'}
+        stackSeparation={0}
+        stackScale={0}
+        cardVerticalMargin={0}
+        cardHorizontalMargin={0}
+        stackSize={3}>
+        {/* <Button
           onPress={() => {
             console.log('oulala');
           }}
           title="Press me">
           You can press me
         </Button> */}
-    </Swiper>
+      </Swiper>
+    </View>
   );
 };
 
@@ -40,22 +71,29 @@ export default CardStack;
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    height: 100,
-    backgroundColor: 'white',
+    // height: 100,
+    // backgroundColor: 'blue',
+    width: 300,
+    height: 200,
+    marginRight: 5,
   },
   card: {
-    height: 200,
+    // display: 'flex',
+    // position: 'absolute',
+    // height: 200,
+    height: '100%',
     // flex: 1,
-    alignItems: 'center',
     borderRadius: 4,
     borderWidth: 2,
     borderColor: '#E8E8E8',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'red',
+    // width: '100%',
+    // height: '100%',
   },
   text: {
     textAlign: 'center',
     // fontSize: 50,
-    backgroundColor: 'transparent',
+    backgroundColor: 'orange',
   },
 });
