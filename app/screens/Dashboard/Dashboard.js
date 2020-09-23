@@ -14,6 +14,7 @@ import SeasonAverages from './components/Averages/SeasonAverages';
 import EnterGameModule from './components/Game/EnterGameModule';
 import NewGameModal from './components/Game/NewGameModal';
 import Trends from './components/Trends/Trends';
+import Help from './components/Help/Help';
 
 import {setGames} from '../../../ducks/reducers/gamesReducer';
 import {saveAverages, saveGoals} from '../../../ducks/reducers/seasonReducer';
@@ -77,6 +78,9 @@ const Dashboard = (props) => {
         </View>
         <View style={styles.card}>
           <Trends />
+        </View>
+        <View style={styles.card}>
+          <Help />
         </View>
       </ScrollView>
     </SafeAreaView>

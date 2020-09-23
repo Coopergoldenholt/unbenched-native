@@ -20,9 +20,9 @@ const Trending = (props) => {
   const trending = () => {
     if (firstHalfTotal > secondHalfTotal) {
       return 'negative';
-    } else {
+    } else if (firstHalfTotal < secondHalfTotal) {
       return 'positive';
-    }
+    } else 'equal';
   };
 
   return (
