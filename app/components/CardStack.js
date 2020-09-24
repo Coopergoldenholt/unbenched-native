@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Swiper from 'react-native-deck-swiper';
 import {Button, StyleSheet, Text, View} from 'react-native';
 
 const CardStack = () => {
+  const [cardDisplay, setCardDisplay] = useState(0);
+  const [cards, setCards] = useState([]);
+
+  // const displayCard =
+
   return (
     <View style={styles.container}>
       <Swiper
@@ -45,10 +50,12 @@ const CardStack = () => {
           console.log(cardIndex);
         }}
         onSwipedAll={() => {
-          console.log('onSwipedAll');
+          setCardDisplay(0);
         }}
-        cardIndex={0}
+        cardIndex={cardDisplay}
         backgroundColor={'blue'}
+        verticalSwipe={false}
+        goBackToPreviousCardOnSwipeRight={true}
         stackSeparation={0}
         stackScale={0}
         cardVerticalMargin={0}

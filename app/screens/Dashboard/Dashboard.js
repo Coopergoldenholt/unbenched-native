@@ -80,7 +80,7 @@ const Dashboard = (props) => {
           <Trends />
         </View>
         <View style={styles.card}>
-          <Help />
+          {props.season.averages && props.season.goals ? <Help /> : null}
         </View>
       </ScrollView>
     </SafeAreaView>
