@@ -3,7 +3,6 @@ import {View, StyleSheet, Text} from 'react-native';
 import {WebView} from 'react-native-webview';
 import CardStack from '../../../../components/CardStack';
 import {connect} from 'react-redux';
-import {Thumbnail} from 'react-native-thumbnail-video';
 
 const Help = (props) => {
   const {goals, averages} = props;
@@ -32,9 +31,7 @@ const Help = (props) => {
             <Text style={styles.text}>
               Check out these drills to get better!
             </Text>
-            {/* <CardStack /> */}
-
-            <Thumbnail url="https://www.youtube.com/watch?v=lgj3D5-jJ74" />
+            <CardStack />
           </View>
         </>
       );

@@ -8,15 +8,19 @@ import {
   Dimensions,
 } from 'react-native';
 import {shape, string, number} from 'prop-types';
+import {Thumbnail} from 'react-native-thumbnail-video';
 
-const Card = ({card}) => (
-  <View style={styles.card}>
-    <Image style={styles.image} source={card.photo} resizeMode="cover" />
-    <View style={styles.photoDescriptionContainer}>
-      <Text style={styles.text}>{`${card.name}, ${card.age}`}</Text>
-    </View>
-  </View>
-);
+const Card = (props) => {
+  // console.log(props.index);
+  // <View style={styles.card}>
+  return (
+    <Thumbnail
+      imageWidth={300}
+      url="https://www.youtube.com/watch?v=-RjJtO51ykY&ab_channel=MarkRober"
+    />
+  );
+  // </View>
+};
 
 Card.propTypes = {
   card: shape({

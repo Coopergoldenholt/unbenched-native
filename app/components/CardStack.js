@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Swiper from 'react-native-deck-swiper';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import Card from './Card';
 
 const CardStack = () => {
   const [cardDisplay, setCardDisplay] = useState(0);
@@ -11,37 +12,12 @@ const CardStack = () => {
   return (
     <View style={styles.container}>
       <Swiper
-        cards={[
-          'DO',
-          'MORE',
-          'OF',
-          'WHAT',
-          'MAKES',
-          'YOU',
-          'HAPPY',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-          'Stuff',
-        ]}
-        renderCard={(card) => {
+        cards={['DO', 'MORE', 'OF', 'WHAT', 'MAKES']}
+        renderCard={(card, index) => {
           return (
             <View style={styles.container}>
               <View style={styles.card}>
-                <Text style={styles.text}>{card}</Text>
+                <Card card={card} />
               </View>
             </View>
           );
@@ -50,9 +26,9 @@ const CardStack = () => {
           console.log(cardIndex);
         }}
         onSwipedAll={() => {
-          setCardDisplay(0);
+          console.log('all Jumped');
         }}
-        cardIndex={cardDisplay}
+        // cardIndex={cardDisplay}
         backgroundColor={'blue'}
         verticalSwipe={false}
         goBackToPreviousCardOnSwipeRight={true}
@@ -60,7 +36,10 @@ const CardStack = () => {
         stackScale={0}
         cardVerticalMargin={0}
         cardHorizontalMargin={0}
-        stackSize={3}>
+        infinite={true}
+        // jumpToCardIndex={2}
+        // swipeBackCard={true}
+        stackSize={2}>
         {/* <Button
           onPress={() => {
             console.log('oulala');
@@ -94,7 +73,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#E8E8E8',
     justifyContent: 'center',
-    backgroundColor: 'red',
+    backgroundColor: 'transparent',
     // width: '100%',
     // height: '100%',
   },
