@@ -12,56 +12,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
 
 const EnterGameModule = (props) => {
-  //   const [timeSelected, setTimeSelect] = useState(0);
-  //   const [seasonPicker, setSeasonPicker] = useState();
-  //   const [seasons, setSeasons] = useState(['19-20', '18-19', 'summer 18-19']);
-  //   const [displaySeasonModal, setDisplaySeasonModal] = useState(false);
-
-  //   const seasonPickerItems = seasons.map((ele) => {
-  //     return {label: ele, value: ele};
-  //   });
-
-  //   const totalTime = [
-  //     {label: '30 Minutes', value: 30},
-  //     {label: '45 Minutes', value: 45},
-  //     {label: '1 Hour', value: 60},
-  //     {label: '1 Hour 15 Minutes', value: 75},
-  //     {label: '1 Hour 30 Minutes', value: 90},
-  //   ];
-
-  //   return (
-  //     <View>
-  //       <Modal style={styles.modal} isVisible={props.display}>
-  //         <View style={styles.scrollableModal}>
-  //           <ScrollView scrollEventThrottle={16}>
-  //             <DropDownPicker
-  //               items={totalTime}
-  //               defaultValue={timeSelected}
-  //               placeholder="Time"
-  //               containerStyle={{
-  //                 height: 40,
-  //                 width: 200,
-  //                 marginBottom: 10,
-  //                 marginTop: 10,
-  //               }}
-  //               onChangeItem={(item) => setTimeSelect(item.value)}
-  //             />
-  //             <TouchableOpacity
-  //               onPress={() => props.setDisplayFalse(!props.display)}>
-  //               <Text>Cancel</Text>
-  //             </TouchableOpacity>
-  //           </ScrollView>
-  //         </View>
-  //       </Modal>
-  //     </View>
-  //   );
-  const [currentSeason, setCurrentSeason] = useState('19-20');
-  const [seasons, setSeasons] = useState([
-    '30 Minutes',
-    '18-19',
-    'summer 18-19',
-  ]);
-  const [seasonPicker, setSeasonPicker] = useState(null);
+  const [timeSelected, setTimeSelect] = useState(0);
+  const [seasonPicker, setSeasonPicker] = useState();
+  const [seasons, setSeasons] = useState(['19-20', '18-19', 'summer 18-19']);
   const [displaySeasonModal, setDisplaySeasonModal] = useState(false);
 
   const seasonPickerItems = seasons.map((ele) => {
@@ -74,34 +27,33 @@ const EnterGameModule = (props) => {
     {label: '1 Hour', value: 60},
     {label: '1 Hour 15 Minutes', value: 75},
     {label: '1 Hour 30 Minutes', value: 90},
+    {label: '1 Hour 45 Minutes', value: 105},
+    {label: '2 Hours', value: 120},
   ];
 
   return (
     <View>
       <Modal style={styles.modal} isVisible={props.display}>
-        <ScrollView scrollEventThrottle={16}>
-          <DropDownPicker
-            items={seasonPickerItems}
-            defaultValue={currentSeason}
-            placeholder="Seasons"
-            containerStyle={{
-              height: 40,
-              width: 200,
-              marginBottom: 10,
-              marginTop: 10,
-            }}
-            onChangeItem={(item) => setSeasonPicker(item.value)}
-          />
-
-          {/* <CreateNewSeason
-        display={displaySeasonModal}
-        displayModal={setDisplaySeasonModal}
-      /> */}
-          <TouchableOpacity
-            onPress={() => props.setDisplayFalse(!props.display)}>
-            <Text>Cancel</Text>
-          </TouchableOpacity>
-        </ScrollView>
+        <View style={styles.scrollableModal}>
+          <ScrollView scrollEventThrottle={16}>
+            <DropDownPicker
+              items={totalTime}
+              placeholder="Choose a time"
+              defaultValue={null}
+              containerStyle={{height: 40}}
+              style={{backgroundColor: '#fafafa'}}
+              itemStyle={{
+                justifyContent: 'flex-start',
+              }}
+              dropDownStyle={{backgroundColor: '#fafafa'}}
+              onChangeItem={(item) => setTimeSelect(item.value)}
+            />
+            <TouchableOpacity
+              onPress={() => props.setDisplayFalse(!props.display)}>
+              <Text>Cancel</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
       </Modal>
     </View>
   );
