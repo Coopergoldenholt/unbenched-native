@@ -27,7 +27,7 @@ const Dashboard = (props) => {
   useEffect(() => {
     getProps();
   }, []);
-  const getProps = async () => {
+  const getProps = () => {
     setLoading(true);
     axios.get('http://localhost:4169/api/user/season/averages').then((res) => {
       props.saveAverages(res.data);
