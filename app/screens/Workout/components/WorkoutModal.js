@@ -7,19 +7,15 @@ import {
   ScrollView,
   StyleSheet,
   TextInput,
+  Switch,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
 
 const EnterGameModule = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
-  const [seasonPicker, setSeasonPicker] = useState();
-  const [seasons, setSeasons] = useState(['19-20', '18-19', 'summer 18-19']);
-  const [displaySeasonModal, setDisplaySeasonModal] = useState(false);
-
-  const seasonPickerItems = seasons.map((ele) => {
-    return {label: ele, value: ele};
-  });
+  const [isEnabled, setIsEnabled] = useState(false);
 
   const totalTime = [
     {label: '30 Minutes', value: 30},
@@ -33,28 +29,46 @@ const EnterGameModule = (props) => {
 
   return (
     <View>
-      <Modal style={styles.modal} isVisible={props.display}>
-        <View style={styles.scrollableModal}>
-          <ScrollView scrollEventThrottle={16}>
-            <DropDownPicker
-              items={totalTime}
-              placeholder="Choose a time"
-              defaultValue={null}
-              containerStyle={{height: 40}}
-              style={{backgroundColor: '#fafafa'}}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              dropDownStyle={{backgroundColor: '#fafafa'}}
-              onChangeItem={(item) => setTimeSelect(item.value)}
-            />
-            <TouchableOpacity
-              onPress={() => props.setDisplayFalse(!props.display)}>
-              <Text>Cancel</Text>
-            </TouchableOpacity>
-          </ScrollView>
-        </View>
-      </Modal>
+      <View style={styles.switchContainer}>
+        <Text>Do you want to create your own workout?</Text>
+        <Switch
+          trackColor={{false: '#767577', true: '#81b0ff'}}
+          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => setIsEnabled(!isEnabled)}
+          value={isEnabled}
+        />
+      </View>
+      <Text>How Long Is Your Workout?</Text>
+      <DropDownPicker
+        items={totalTime}
+        placeholder="Choose a time"
+        defaultValue={null}
+        // containerStyle={{height: 40}}
+        style={{backgroundColor: '#fafafa'}}
+        itemStyle={{
+          justifyContent: 'flex-start',
+        }}
+        containerStyle={{
+          height: 40,
+          marginBottom: 10,
+          marginTop: 10,
+        }}
+        dropDownStyle={{backgroundColor: '#fafafa'}}
+        onChangeItem={(item) => setTimeSelect(item.value)}
+      />
+      <View style={styles.cancelContainer}>
+        <Button
+          title={'Cancel'}
+          raised={true}
+          onPress={() => props.setDisplayFalse(!props.display)}
+        />
+        <Button
+          title={'Start a Workout'}
+          raised={true}
+          onPress={() => props.setDisplayFalse(!props.display)}
+        />
+      </View>
     </View>
   );
 };
@@ -131,5 +145,15 @@ const styles = StyleSheet.create({
   },
   opponentText: {
     fontSize: 50,
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cancelContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
   },
 });
