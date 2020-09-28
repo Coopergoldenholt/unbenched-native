@@ -15,7 +15,6 @@ import Modal from 'react-native-modal';
 
 const EnterGameModule = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
-  const [isEnabled, setIsEnabled] = useState(false);
 
   const totalTime = [
     {label: '30 Minutes', value: 30},
@@ -29,16 +28,6 @@ const EnterGameModule = (props) => {
 
   return (
     <View>
-      <View style={styles.switchContainer}>
-        <Text>Do you want to create your own workout?</Text>
-        <Switch
-          trackColor={{false: '#767577', true: '#81b0ff'}}
-          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => setIsEnabled(!isEnabled)}
-          value={isEnabled}
-        />
-      </View>
       <Text>How Long Is Your Workout?</Text>
       <DropDownPicker
         items={totalTime}
