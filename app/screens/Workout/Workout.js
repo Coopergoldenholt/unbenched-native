@@ -13,7 +13,7 @@ const Workout = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   return (
     <SafeAreaView>
-      <View style={styles.switchContainer}>
+      {/* <View style={styles.switchContainer}>
         <Text>Customize your Workout</Text>
         <Switch
           trackColor={{false: '#767577', true: '#81b0ff'}}
@@ -22,7 +22,7 @@ const Workout = () => {
           onValueChange={() => setIsEnabled(!isEnabled)}
           value={isEnabled}
         />
-      </View>
+      </View> */}
       <WorkoutModal />
     </SafeAreaView>
   );

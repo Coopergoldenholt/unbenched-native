@@ -12,11 +12,26 @@ import {
 import {Button} from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
+import axios from 'axios';
 
 const EnterGameModule = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
+  const [typeOfDrillsSelected, setDrillsSelected] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  console.log(typeOfDrillsSelected);
+  console.log(timeSelected);
+
+  const handleGenerateWorkout = async () => {
+    axios
+      .get(
+        `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
+      )
+      .then((res) => console.log(res.data));
+  };
 
   const totalTime = [
+    {label: '15 Minutes', value: 15},
     {label: '30 Minutes', value: 30},
     {label: '45 Minutes', value: 45},
     {label: '1 Hour', value: 60},
@@ -25,27 +40,54 @@ const EnterGameModule = (props) => {
     {label: '1 Hour 45 Minutes', value: 105},
     {label: '2 Hours', value: 120},
   ];
+  const typeOfDrills = [
+    {label: 'Speed/Agility', value: 'speed'},
+    {label: 'Scoring', value: 'scoring'},
+    {label: '3 Point Shooting', value: 'three-shooting'},
+    {label: 'Dribbling', value: 'dribbling'},
+    {label: 'Defense', value: 'defense'},
+    {label: 'Strength', value: 'strength'},
+  ];
 
   return (
     <View>
-      <Text>How Long Is Your Workout?</Text>
-      <DropDownPicker
-        items={totalTime}
-        placeholder="Choose a time"
-        defaultValue={null}
-        // containerStyle={{height: 40}}
-        style={{backgroundColor: '#fafafa'}}
-        itemStyle={{
-          justifyContent: 'flex-start',
-        }}
-        containerStyle={{
-          height: 40,
-          marginBottom: 10,
-          marginTop: 10,
-        }}
-        dropDownStyle={{backgroundColor: '#fafafa'}}
-        onChangeItem={(item) => setTimeSelect(item.value)}
-      />
+      <View>
+        <Text>How Long Is Your Workout?</Text>
+        <DropDownPicker
+          items={totalTime}
+          placeholder="Choose a time"
+          defaultValue={null}
+          multiple={true}
+          // containerStyle={{height: 40}}
+          style={{backgroundColor: '#fafafa'}}
+          itemStyle={{
+            justifyContent: 'flex-start',
+          }}
+          containerStyle={{
+            height: 40,
+            marginBottom: 10,
+            marginTop: 10,
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(item) => setTimeSelect(item.value)}
+        />
+      </View>
+      <View>
+        <Text>What do you want to work on?</Text>
+        <DropDownPicker
+          items={typeOfDrills}
+          multiple={true}
+          multipleText="%d type(s) selected."
+          min={0}
+          max={10}
+          defaultValue={0}
+          containerStyle={{height: 40}}
+          itemStyle={{
+            justifyContent: 'flex-start',
+          }}
+          onChangeItem={(item) => setDrillsSelected(item)}
+        />
+      </View>
       <View style={styles.cancelContainer}>
         <Button
           title={'Cancel'}
@@ -55,7 +97,7 @@ const EnterGameModule = (props) => {
         <Button
           title={'Start a Workout'}
           raised={true}
-          onPress={() => props.setDisplayFalse(!props.display)}
+          onPress={() => handleGenerateWorkout()}
         />
       </View>
     </View>
@@ -141,6 +183,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelContainer: {
+    zIndex: -1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 10,

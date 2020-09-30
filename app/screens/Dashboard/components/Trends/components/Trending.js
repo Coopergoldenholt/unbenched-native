@@ -13,10 +13,6 @@ const Trending = (props) => {
     return (acc += ele);
   });
 
-  console.log(firstHalfTotal);
-  console.log(secondHalfTotal);
-  //   console.log(length);
-
   const trending = () => {
     if (firstHalfTotal > secondHalfTotal) {
       return 'negative';
