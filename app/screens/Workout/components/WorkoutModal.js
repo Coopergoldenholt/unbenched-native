@@ -13,6 +13,9 @@ import {Button} from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
 import axios from 'axios';
+import {connect} from 'react-redux';
+
+import {startWorkout} from '../../../../ducks/reducers/workoutReducer';
 
 const EnterGameModule = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
@@ -21,13 +24,16 @@ const EnterGameModule = (props) => {
 
   console.log(typeOfDrillsSelected);
   console.log(timeSelected);
+  console.log(props.workout);
 
   const handleGenerateWorkout = async () => {
+    setLoading(true);
     axios
       .get(
         `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
       )
-      .then((res) => console.log(res.data));
+      .then((res) => props.startWorkout(res.data));
+    setLoading(false);
   };
 
   const totalTime = [
@@ -104,7 +110,13 @@ const EnterGameModule = (props) => {
   );
 };
 
-export default EnterGameModule;
+const mapStateToProps = (state) => {
+  return {
+    workout: state.workout,
+  };
+};
+
+export default connect(mapStateToProps, {startWorkout})(EnterGameModule);
 
 const styles = StyleSheet.create({
   modal: {

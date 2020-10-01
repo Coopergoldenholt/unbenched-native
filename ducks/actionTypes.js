@@ -4,3 +4,4 @@ export const SET_GAMES = 'SAVE_GAMES';
 export const SAVE_SEASON = 'SAVE_SEASON';
 export const SAVE_AVERAGES = 'SAVE_AVERAGES';
 export const SAVE_GOALS = 'SAVE_GOALS';
+export const START_WORKOUT = 'START_WORKOUT';
