@@ -16,6 +16,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 
 import {startWorkout} from '../../../../ducks/reducers/workoutReducer';
+import CollectTime from './CollectTime';
 
 const EnterGameModule = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
@@ -25,15 +26,17 @@ const EnterGameModule = (props) => {
   console.log(typeOfDrillsSelected);
   console.log(timeSelected);
   console.log(props.workout);
+  console.log(props.navigation);
 
   const handleGenerateWorkout = async () => {
-    setLoading(true);
-    axios
-      .get(
-        `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
-      )
-      .then((res) => props.startWorkout(res.data));
-    setLoading(false);
+    // setLoading(true);
+    // axios
+    //   .get(
+    //     `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
+    //   )
+    //   .then((res) => props.startWorkout(res.data));
+    // setLoading(false);
+    props.navigation.navigate('Workout Display');
   };
 
   const totalTime = [
@@ -56,8 +59,9 @@ const EnterGameModule = (props) => {
   ];
 
   return (
-    <View>
-      <View>
+    <ScrollView>
+      <CollectTime />
+      {/* <View>
         <Text>How Long Is Your Workout?</Text>
         <DropDownPicker
           items={totalTime}
@@ -77,7 +81,7 @@ const EnterGameModule = (props) => {
           dropDownStyle={{backgroundColor: '#fafafa'}}
           onChangeItem={(item) => setTimeSelect(item.value)}
         />
-      </View>
+      </View> */}
       <View>
         <Text>What do you want to work on?</Text>
         <DropDownPicker
@@ -106,7 +110,7 @@ const EnterGameModule = (props) => {
           onPress={() => handleGenerateWorkout()}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

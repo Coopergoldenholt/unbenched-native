@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import WorkoutModal from './components/WorkoutModal';
 
-const Workout = () => {
+const Workout = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
+  console.log(props.navigation);
   return (
     <SafeAreaView>
       {/* <View style={styles.switchContainer}>
@@ -23,7 +24,7 @@ const Workout = () => {
           value={isEnabled}
         />
       </View> */}
-      <WorkoutModal />
+      <WorkoutModal navigation={props.navigation} />
     </SafeAreaView>
   );
 };
