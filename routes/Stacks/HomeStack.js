@@ -4,6 +4,7 @@ import Dashboard from '../../app/screens/Dashboard/Dashboard';
 import Games from '../../app/screens/Games/Games';
 import User from '../../app/screens/User/User';
 import Workout from '../../app/screens/Workout/Workout';
+import DisplayWorkout from '../../app/screens/DisplayWorkout/DisplayWorkout';
 
 const Tab = createBottomTabNavigator();
 
