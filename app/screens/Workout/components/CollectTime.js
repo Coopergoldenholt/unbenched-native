@@ -1,163 +1,29 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Card, ListItem, Button, Icon} from 'react-native-elements';
+import {Card, ListItem, Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Feather';
 
-const CollectTime = () => {
+const CollectTime = (props) => {
   return (
-    <View style={styles.container}>
-      <Card containerStyle={styles.card}>
-        <Card.Title>15 Minutes</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>30 Minutes</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>45 Minutes</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="Select"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>1 Hour</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>1:15 Hour</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>1:30 Hour</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>1:45 Hour</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title>2 Hours</Card.Title>
-        {/* <Card.Divider /> */}
-        {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          // icon={<Icon name="code" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-    </View>
+    <Card containerStyle={styles.card}>
+      <Card.Title>{props.time}</Card.Title>
+      {/* <Card.Divider /> */}
+      {/* <Card.Image source={require('../images/pic2.jpg')} /> */}
+      <View style={styles.iconContainer}>
+        <Icon name="clock" size={60} />
+      </View>
+
+      {/* <Button
+        // icon={<Icon name="code" color="#ffffff" />}
+        buttonStyle={{
+          borderRadius: 0,
+          marginLeft: 0,
+          marginRight: 0,
+          marginBottom: 0,
+        }}
+        title="VIEW NOW"
+      /> */}
+    </Card>
   );
 };
 
@@ -170,6 +36,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   card: {
-    width: '20%',
+    width: '30%',
+  },
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -1,24 +1,21 @@
 import React, {useState} from 'react';
+import Icon from 'react-native-vector-icons/Feather';
 import {
   SafeAreaView,
-  TouchableOpacity,
   Text,
-  View,
-  ScrollView,
-  StyleSheet,
-  TextInput,
+  TouchableOpacity,
   Switch,
+  View,
+  StyleSheet,
+  ScrollView,
 } from 'react-native';
-import {Button} from 'react-native-elements';
-import DropDownPicker from 'react-native-dropdown-picker';
-import Modal from 'react-native-modal';
-import axios from 'axios';
 import {connect} from 'react-redux';
-
-import {startWorkout} from '../../../../ducks/reducers/workoutReducer';
+import {Button} from 'react-native-elements';
+import WorkoutModal from './WorkoutModal';
 import CollectTime from './CollectTime';
 
-const EnterGameModule = (props) => {
+const Workout = (props) => {
+  const [isEnabled, setIsEnabled] = useState(false);
   const [timeSelected, setTimeSelect] = useState(0);
   const [typeOfDrillsSelected, setDrillsSelected] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -38,7 +35,7 @@ const EnterGameModule = (props) => {
     // setLoading(false);
     props.navigation.navigate('Workout Display');
   };
-
+  console.log(props.navigation);
   const totalTime = [
     {label: '15 Minutes', value: 15},
     {label: '30 Minutes', value: 30},
@@ -61,35 +58,34 @@ const EnterGameModule = (props) => {
   const colletTimeDisplay = totalTime.map((ele) => {
     return <CollectTime time={ele.label} value={ele.value} />;
   });
-
   return (
     <ScrollView>
       {/* <CollectTime /> */}
       <View style={styles.timeContainer}>{colletTimeDisplay}</View>
       {/* <View>
-        <Text>How Long Is Your Workout?</Text>
-        <DropDownPicker
-          items={totalTime}
-          placeholder="Choose a time"
-          defaultValue={null}
-          multiple={true}
-          // containerStyle={{height: 40}}
-          style={{backgroundColor: '#fafafa'}}
-          itemStyle={{
-            justifyContent: 'flex-start',
-          }}
-          containerStyle={{
-            height: 40,
-            marginBottom: 10,
-            marginTop: 10,
-          }}
-          dropDownStyle={{backgroundColor: '#fafafa'}}
-          onChangeItem={(item) => setTimeSelect(item.value)}
-        />
-      </View> */}
-      <View>
-        <Text>What do you want to work on?</Text>
-        <DropDownPicker
+      <Text>How Long Is Your Workout?</Text>
+      <DropDownPicker
+        items={totalTime}
+        placeholder="Choose a time"
+        defaultValue={null}
+        multiple={true}
+        // containerStyle={{height: 40}}
+        style={{backgroundColor: '#fafafa'}}
+        itemStyle={{
+          justifyContent: 'flex-start',
+        }}
+        containerStyle={{
+          height: 40,
+          marginBottom: 10,
+          marginTop: 10,
+        }}
+        dropDownStyle={{backgroundColor: '#fafafa'}}
+        onChangeItem={(item) => setTimeSelect(item.value)}
+      />
+    </View> */}
+      {/* <View>
+        <Text>What do you want to work on?</Text> */}
+      {/* <DropDownPicker
           items={typeOfDrills}
           multiple={true}
           multipleText="%d type(s) selected."
@@ -101,8 +97,8 @@ const EnterGameModule = (props) => {
             justifyContent: 'flex-start',
           }}
           onChangeItem={(item) => setDrillsSelected(item)}
-        />
-      </View>
+        /> */}
+      {/* </View>
       <View style={styles.cancelContainer}>
         <Button
           title={'Cancel'}
@@ -113,8 +109,8 @@ const EnterGameModule = (props) => {
           title={'Start a Workout'}
           raised={true}
           onPress={() => handleGenerateWorkout()}
-        />
-      </View>
+        /> */}
+      {/* </View> */}
     </ScrollView>
   );
 };
@@ -125,7 +121,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {startWorkout})(EnterGameModule);
+export default connect(mapStateToProps)(Workout);
 
 const styles = StyleSheet.create({
   modal: {
@@ -204,7 +200,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelContainer: {
-    zIndex: -1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 10,
