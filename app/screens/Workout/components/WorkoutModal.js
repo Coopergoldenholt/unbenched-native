@@ -25,8 +25,6 @@ const WorkoutSelection = (props) => {
   const [loading, setLoading] = useState(false);
   const [typeOfDrills, setDrills] = useState(props.route.params.drills);
 
-  console.log(props.route.params.drills);
-
   const handleGenerateWorkout = async () => {
     // setLoading(true);
     // axios
@@ -54,11 +52,35 @@ const WorkoutSelection = (props) => {
       const index = typeOfDrillsSelected.indexOf(workoutValue);
       let newArr = typeOfDrillsSelected;
       newArr.splice(index, 1);
+      let drills = props.route.params.drills;
 
       setDrillsSelected(newArr);
-      setDrills(typeOfDrills);
+      if (props.route.params.type === 'strength') {
+        setDrills([
+          {label: 'Biceps', value: 'biceps'},
+          {label: 'Triceps', value: 'Tricpes'},
+          {label: 'Vertical', value: 'vertical'},
+        ]);
+      } else {
+        setDrills([
+          {label: 'Speed/Agility', value: 'speed'},
+          {label: 'Scoring', value: 'scoring'},
+          {label: '3 Point Shooting', value: 'three-shooting'},
+          {label: 'Free Throw Shooting', value: 'free-throws'},
+          {
+            label: 'Pick and Roll Ballhandler',
+            value: 'pick-roll-ballhandler',
+          },
+          {label: 'Pick and Roll Big Man', value: 'pick-roll-bigman'},
+          {label: 'Post Moves', value: 'post-moves'},
+          {label: 'Dribbling', value: 'dribbling'},
+          {label: 'Defense', value: 'defense'},
+          {label: 'Strength', value: 'strength'},
+        ]);
+      }
     } else {
       setDrillsSelected([...typeOfDrillsSelected, workoutValue]);
+      setDrills(typeOfDrills);
     }
   };
 

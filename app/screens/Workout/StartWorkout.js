@@ -48,6 +48,7 @@ const StartWorkout = (props) => {
                 {label: 'Defense', value: 'defense'},
                 {label: 'Strength', value: 'strength'},
               ],
+              type: 'basketball',
             })
           }
           buttonStyle={{
@@ -68,6 +69,7 @@ const StartWorkout = (props) => {
                 {label: 'Triceps', value: 'Tricpes'},
                 {label: 'Vertical', value: 'vertical'},
               ],
+              type: 'strength',
             })
           }
           buttonStyle={{
