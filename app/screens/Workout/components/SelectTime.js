@@ -12,7 +12,6 @@ import {
 import {connect} from 'react-redux';
 import {Button} from 'react-native-elements';
 import WorkoutModal from './WorkoutModal';
-import CollectTime from './CollectTime';
 
 const Workout = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -25,7 +24,7 @@ const Workout = (props) => {
   console.log(props.workout);
   console.log(props.navigation);
 
-  const handleGenerateWorkout = async () => {
+  const handleNextPress = async () => {
     // setLoading(true);
     // axios
     //   .get(
@@ -54,9 +53,20 @@ const Workout = (props) => {
     {label: 'Defense', value: 'defense'},
     {label: 'Strength', value: 'strength'},
   ];
+  console.log(props.route.params.timeSelected);
+  console.log(props.route.params);
 
   const colletTimeDisplay = totalTime.map((ele) => {
-    return <CollectTime time={ele.label} value={ele.value} />;
+    return (
+      <TouchableOpacity
+        onPress={() => props.route.params.selectTime(ele.value)}>
+        <CollectTime
+          handleTimeSelect={props.route.params.selectTime}
+          time={ele.label}
+          value={ele.value}
+        />
+      </TouchableOpacity>
+    );
   });
   return (
     <ScrollView>

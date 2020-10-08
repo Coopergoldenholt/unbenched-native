@@ -1,6 +1,7 @@
 import React from 'react';
 import StartWorkout from '../../app/screens/Workout/StartWorkout';
-import SelectTime from '../../app/screens/Workout/components/SelectTime';
+import StrengthWorkout from '../../app/screens/Workout/components/StrengthModal';
+import BasketballWorkout from '../../app/screens/Workout/components/WorkoutModal';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -10,7 +11,8 @@ const ScreenStack = (props) => {
     <Stack.Navigator>
       {/* <Stack.Screen name="Home" component={HomeNavigator} /> */}
       <Stack.Screen name="StartWorkout" component={StartWorkout} />
-      <Stack.Screen name="SelectTime" component={SelectTime} />
+      <Stack.Screen name="Select Workout" component={BasketballWorkout} />
+      {/* <Stack.Screen name="Strength Workout" component={StrengthWorkout} /> */}
     </Stack.Navigator>
   );
 };

@@ -19,13 +19,27 @@ import {startWorkout} from '../../../../ducks/reducers/workoutReducer';
 
 import DisplayTypeOfWorkout from './DisplayTypeOfWorkouts';
 
-const WorkoutSelection = (props) => {
+const StrengthWorkout = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
   const [typeOfDrillsSelected, setDrillsSelected] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [typeOfDrills, setDrills] = useState(props.route.params.drills);
+  const [typeOfDrills, setDrills] = useState([
+    {label: 'Speed/Agility', value: 'speed'},
+    {label: 'Scoring', value: 'scoring'},
+    {label: '3 Point Shooting', value: 'three-shooting'},
+    {label: 'Free Throw Shooting', value: 'free-throws'},
+    {label: 'Pick and Roll Ballhandler', value: 'pick-roll-ballhandler'},
+    {label: 'Pick and Roll Big Man', value: 'pick-roll-bigman'},
+    {label: 'Post Moves', value: 'post-moves'},
+    {label: 'Dribbling', value: 'dribbling'},
+    {label: 'Defense', value: 'defense'},
+    {label: 'Strength', value: 'strength'},
+  ]);
 
-  console.log(props.route.params.drills);
+  // console.log(typeOfDrillsSelected);
+  // console.log(timeSelected);
+  // console.log(props.workout);
+  // console.log(props.navigation);
 
   const handleGenerateWorkout = async () => {
     // setLoading(true);
@@ -48,6 +62,7 @@ const WorkoutSelection = (props) => {
     {label: '1 Hour 45 Minutes', value: 105},
     {label: '2 Hours', value: 120},
   ];
+  // const typeOfDrills =
 
   const handleDrillSelect = (workoutValue) => {
     if (typeOfDrillsSelected.includes(workoutValue)) {
@@ -56,13 +71,25 @@ const WorkoutSelection = (props) => {
       newArr.splice(index, 1);
 
       setDrillsSelected(newArr);
-      setDrills(typeOfDrills);
+      setDrills([
+        {label: 'Speed/Agility', value: 'speed'},
+        {label: 'Scoring', value: 'scoring'},
+        {label: '3 Point Shooting', value: 'three-shooting'},
+        {label: 'Free Throw Shooting', value: 'free-throws'},
+        {label: 'Pick and Roll Ballhandler', value: 'pick-roll-ballhandler'},
+        {label: 'Pick and Roll Big Man', value: 'pick-roll-bigman'},
+        {label: 'Post Moves', value: 'post-moves'},
+        {label: 'Dribbling', value: 'dribbling'},
+        {label: 'Defense', value: 'defense'},
+        {label: 'Strength', value: 'strength'},
+      ]);
     } else {
       setDrillsSelected([...typeOfDrillsSelected, workoutValue]);
     }
   };
 
   const typeOfWorkouts = typeOfDrills.map((ele) => {
+    console.log(ele.value);
     return (
       <DisplayTypeOfWorkout
         typeOfDrillsSelected={typeOfDrillsSelected}
@@ -72,7 +99,7 @@ const WorkoutSelection = (props) => {
       />
     );
   });
-
+  console.log(typeOfDrillsSelected);
   return (
     <>
       <ScrollView>
@@ -112,7 +139,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {startWorkout})(WorkoutSelection);
+export default connect(mapStateToProps, {startWorkout})(StrengthWorkout);
 
 const styles = StyleSheet.create({
   modal: {

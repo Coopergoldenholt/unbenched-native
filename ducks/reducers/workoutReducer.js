@@ -8,6 +8,7 @@ export const startWorkout = (workout) => {
     payload: workout,
   };
 };
+
 // export const destroySession = () => {
 //   return {
 //     type: DESTROY_SESSION,
