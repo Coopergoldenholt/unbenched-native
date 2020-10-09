@@ -4,7 +4,6 @@ import {Card, ListItem, Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
 
 const CollectTime = (props) => {
-  console.log(props.typeOfDrillsSelected.includes(props.value));
   return (
     <TouchableOpacity onPress={() => props.handleDrillSelect(props.value)}>
       <Card containerStyle={styles.card}>
@@ -29,6 +28,7 @@ const styles = StyleSheet.create({
     // width: '30%',
     width: 150,
     height: 200,
+    zIndex: 1,
   },
   iconContainer: {
     justifyContent: 'center',

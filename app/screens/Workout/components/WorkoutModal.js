@@ -98,23 +98,26 @@ const WorkoutSelection = (props) => {
   return (
     <>
       <ScrollView>
-        <View>
-          <Text>How Long Is Your Workout?</Text>
+        <View style={styles.timeContainer}>
+          <Text style={styles.text}>How Long Is Your Workout?</Text>
 
           <DropDownPicker
             items={totalTime}
             placeholder="Choose a time"
             defaultValue={null}
-            containerStyle={{height: 40, zIndex: 10000}}
+            containerStyle={{height: 40, width: 300}}
             style={{backgroundColor: '#fafafa'}}
             itemStyle={{
               justifyContent: 'flex-start',
+              zIndex: 9999999999,
             }}
             dropDownStyle={{backgroundColor: '#fafafa'}}
             onChangeItem={(item) => setTimeSelect(item.value)}
           />
         </View>
-
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Build Your Wokout</Text>
+        </View>
         <View style={styles.workoutsContainer}>{typeOfWorkouts}</View>
         <View style={styles.cancelContainer}>
           <Button
@@ -175,6 +178,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 50,
+    marginTop: 20,
   },
   buttonCancel: {
     paddingTop: 3,
@@ -216,16 +220,29 @@ const styles = StyleSheet.create({
     zIndex: -1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 10,
+    marginTop: 40,
   },
   timeContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    // width: 400,
+    // marginTop: 20,
   },
   workoutsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    zIndex: -1,
+  },
+  text: {
+    fontSize: 25,
+    marginBottom: 10,
+    marginTop: 30,
+  },
+  textContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: -1,
   },
 });
