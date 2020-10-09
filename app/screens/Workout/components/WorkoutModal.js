@@ -26,14 +26,17 @@ const WorkoutSelection = (props) => {
   const [typeOfDrills, setDrills] = useState(props.route.params.drills);
 
   const handleGenerateWorkout = async () => {
-    // setLoading(true);
-    // axios
-    //   .get(
-    //     `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
-    //   )
-    //   .then((res) => props.startWorkout(res.data));
-    // setLoading(false);
-    props.navigation.navigate('Workout Display');
+    setLoading(true);
+    axios
+      .get(
+        `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
+      )
+      .then(
+        (res) => console.log(res.data),
+        // props.startWorkout(res.data)
+      );
+    setLoading(false);
+    // props.navigation.navigate('Workout Display');
   };
 
   const totalTime = [
