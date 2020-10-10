@@ -1,9 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+
 import {WebView} from 'react-native-webview';
 
 const DisplayWorkout = (props) => {
   const [workoutDisplay, setWorkoutDisplay] = useState([]);
+  const [workoutIndex, setWorkoutIndex] = useState(0);
   const {workout} = props.route.params;
 
   useEffect(() => {
@@ -28,45 +36,68 @@ const DisplayWorkout = (props) => {
       setWorkoutDisplay(workout);
     }
   };
-  console.log(workoutDisplay);
 
-  const eachWorkout = workoutDisplay.map((ele) => {
-    return (
-      <View style={styles.card}>
-        <View style={styles.videoContainer}>
-          <Text>{ele.name}</Text>
-          <WebView
-            style={{flex: 1}}
-            javaScriptEnabled={true}
-            source={{
-              uri: 'https://www.youtube.com/embed/TXZED8duLxI',
-            }}
-            // style={{
-            //   width: 200,
-            //   height: 200,
-            //   backgroundColor: 'blue',
-            //   marginTop: 20,
-            // }}
-          />
-          <View>
-            <View style={styles.previousWorkout}>
-              <Text>Last Workout: 32/74 </Text>
-              <Text>Percentage: </Text>
-              <Text>43.2%</Text>
-            </View>
-            <View style={styles.previousWorkout}>
-              <Text>Total: 78/154 </Text>
-              <Text>Percentage: 50.1%</Text>
+  const handleWorkoutPress = (num) => {
+    setWorkoutIndex(workoutIndex + num);
+  };
+
+  const eachWorkout = workoutDisplay
+    .filter((ele, indx) => {
+      return indx === workoutIndex;
+    })
+    .map((ele) => {
+      return (
+        <View style={styles.card}>
+          <View style={styles.videoContainer}>
+            <Text>{ele.name}</Text>
+            <WebView
+              style={{flex: 1}}
+              javaScriptEnabled={true}
+              source={{
+                uri: 'https://www.youtube.com/embed/TXZED8duLxI',
+              }}
+              // style={{
+              //   width: 200,
+              //   height: 200,
+              //   backgroundColor: 'blue',
+              //   marginTop: 20,
+              // }}
+            />
+            <View>
+              <View style={styles.previousWorkout}>
+                <Text>Last Workout: 32/74 </Text>
+                <Text>Percentage: </Text>
+                <Text>43.2%</Text>
+              </View>
+              <View style={styles.previousWorkout}>
+                <Text>Total: 78/154 </Text>
+                <Text>Percentage: 50.1%</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    );
-  });
+      );
+    });
+
+  console.log(workout.length);
 
   return (
     <View style={{height: '100%', alignItems: 'center'}}>
-      <ScrollView>{eachWorkout}</ScrollView>
+      <ScrollView>
+        {eachWorkout}
+        <View style={styles.workoutButtonContainer}>
+          <TouchableOpacity
+            disabled={workoutIndex === 0 ? true : false}
+            onPress={() => handleWorkoutPress(-1)}>
+            <Text>Previous Workout</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            disabled={workoutIndex === workout.length - 1 ? true : false}
+            onPress={() => handleWorkoutPress(1)}>
+            <Text>Next Workout</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -100,5 +131,9 @@ const styles = StyleSheet.create({
 
     elevation: 12,
     borderRadius: 5,
+  },
+  workoutButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
