@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TextInput,
   Switch,
+  Alert,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -32,7 +33,15 @@ const WorkoutSelection = (props) => {
         `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
       )
       .then(
-        (res) => console.log(res.data),
+        (res) => {
+          if (res.data === 'Workout Not Possible') {
+            return Alert.alert(
+              'Workout is not possible, try different settings',
+            );
+          } else {
+            props.navigation.navigate('DisplayWorkout', {workout: res.data});
+          }
+        },
         // props.startWorkout(res.data)
       );
     setLoading(false);

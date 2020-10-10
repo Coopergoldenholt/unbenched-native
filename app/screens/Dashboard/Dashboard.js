@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {WebView} from 'react-native-webview';
 
 import SeasonAverages from './components/Averages/SeasonAverages';
 import EnterGameModule from './components/Game/EnterGameModule';
@@ -82,6 +83,19 @@ const Dashboard = (props) => {
         <View style={styles.card}>
           {props.season.averages && props.season.goals ? <Help /> : null}
         </View>
+        <WebView
+          style={{flex: 1}}
+          javaScriptEnabled={true}
+          source={{
+            uri: 'https://www.youtube.com/embed/TXZED8duLxI',
+          }}
+          style={{
+            width: 200,
+            height: 200,
+            backgroundColor: 'blue',
+            marginTop: 20,
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );

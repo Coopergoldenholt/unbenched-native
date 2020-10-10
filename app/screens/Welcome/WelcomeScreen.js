@@ -9,6 +9,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import {WebView} from 'react-native-webview';
 
 export default function WelcomeScreen({navigation}) {
   return (
