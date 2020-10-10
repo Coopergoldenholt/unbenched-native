@@ -32,30 +32,32 @@ const DisplayWorkout = (props) => {
 
   const eachWorkout = workoutDisplay.map((ele) => {
     return (
-      <View style={styles.videoContainer}>
-        <Text>{ele.name}</Text>
-        <WebView
-          style={{flex: 1}}
-          javaScriptEnabled={true}
-          source={{
-            uri: 'https://www.youtube.com/embed/TXZED8duLxI',
-          }}
-          // style={{
-          //   width: 200,
-          //   height: 200,
-          //   backgroundColor: 'blue',
-          //   marginTop: 20,
-          // }}
-        />
-        <View>
-          <View style={styles.previousWorkout}>
-            <Text>Last Workout: 32/74 </Text>
-            <Text>Percentage: </Text>
-            <Text>43.2%</Text>
-          </View>
-          <View style={styles.previousWorkout}>
-            <Text>Total: 78/154 </Text>
-            <Text>Percentage: 50.1%</Text>
+      <View style={styles.card}>
+        <View style={styles.videoContainer}>
+          <Text>{ele.name}</Text>
+          <WebView
+            style={{flex: 1}}
+            javaScriptEnabled={true}
+            source={{
+              uri: 'https://www.youtube.com/embed/TXZED8duLxI',
+            }}
+            // style={{
+            //   width: 200,
+            //   height: 200,
+            //   backgroundColor: 'blue',
+            //   marginTop: 20,
+            // }}
+          />
+          <View>
+            <View style={styles.previousWorkout}>
+              <Text>Last Workout: 32/74 </Text>
+              <Text>Percentage: </Text>
+              <Text>43.2%</Text>
+            </View>
+            <View style={styles.previousWorkout}>
+              <Text>Total: 78/154 </Text>
+              <Text>Percentage: 50.1%</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -73,10 +75,30 @@ export default DisplayWorkout;
 
 const styles = StyleSheet.create({
   videoContainer: {
-    height: 300,
-    width: 350,
+    height: 250,
+    width: 300,
+    backgroundColor: 'white',
   },
   previousWorkout: {
     flexDirection: 'row',
+  },
+  card: {
+    height: 300,
+    width: 350,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop: 20,
+    shadowColor: '#000',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
+    borderRadius: 5,
   },
 });
