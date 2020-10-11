@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import axios from 'axios';
 
 import {WebView} from 'react-native-webview';
 
@@ -17,6 +18,8 @@ const DisplayWorkout = (props) => {
   useEffect(() => {
     setWarmupFirst();
   }, []);
+
+  const getWorkoutResults = () => {};
 
   let setWarmupFirst = async () => {
     let workoutTwo = workout;
@@ -30,9 +33,9 @@ const DisplayWorkout = (props) => {
       let [warmup] = await workout.splice(index, 1);
 
       await workout.unshift(warmup);
+
       setWorkoutDisplay(workout);
     } else {
-      console.log('here');
       setWorkoutDisplay(workout);
     }
   };
@@ -46,6 +49,10 @@ const DisplayWorkout = (props) => {
       return indx === workoutIndex;
     })
     .map((ele) => {
+      // let results = axios
+      //   .get(`http://localhost:4169/api/workout/results/${ele.id}`)
+      //   .then((res) => res.data);
+      // console.log(results);
       return (
         <View style={styles.card}>
           <View style={styles.videoContainer}>
@@ -54,7 +61,7 @@ const DisplayWorkout = (props) => {
               style={{flex: 1}}
               javaScriptEnabled={true}
               source={{
-                uri: 'https://www.youtube.com/embed/TXZED8duLxI',
+                uri: ele.url,
               }}
               // style={{
               //   width: 200,
@@ -63,9 +70,12 @@ const DisplayWorkout = (props) => {
               //   marginTop: 20,
               // }}
             />
+
             <View>
               <View style={styles.previousWorkout}>
-                <Text>Last Workout: 32/74 </Text>
+                {/* <Text>
+                  Last Workout: {`${results.low_value}/${results.high_value}`}{' '}
+                </Text> */}
                 <Text>Percentage: </Text>
                 <Text>43.2%</Text>
               </View>
@@ -78,8 +88,6 @@ const DisplayWorkout = (props) => {
         </View>
       );
     });
-
-  console.log(workout.length);
 
   return (
     <View style={{height: '100%', alignItems: 'center'}}>
