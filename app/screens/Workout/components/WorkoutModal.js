@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Modal from 'react-native-modal';
 import axios from 'axios';
 import {connect} from 'react-redux';
 
@@ -75,19 +74,16 @@ const WorkoutSelection = (props) => {
         ]);
       } else {
         setDrills([
-          {label: 'Speed/Agility', value: 'speed'},
           {label: 'Scoring', value: 'scoring'},
           {label: '3 Point Shooting', value: 'three-shooting'},
+          {label: 'Dribbling', value: 'dribbling'},
           {label: 'Free Throw Shooting', value: 'free-throws'},
           {
             label: 'Pick and Roll Ballhandler',
             value: 'pick-roll-ballhandler',
           },
-          {label: 'Pick and Roll Big Man', value: 'pick-roll-bigman'},
-          {label: 'Post Moves', value: 'post-moves'},
-          {label: 'Dribbling', value: 'dribbling'},
+
           {label: 'Defense', value: 'defense'},
-          {label: 'Strength', value: 'strength'},
         ]);
       }
     } else {

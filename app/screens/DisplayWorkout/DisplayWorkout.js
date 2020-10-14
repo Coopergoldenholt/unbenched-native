@@ -10,6 +10,8 @@ import axios from 'axios';
 
 import {WebView} from 'react-native-webview';
 
+import WorkoutCard from './components/WorkoutCard';
+
 const DisplayWorkout = (props) => {
   const [workoutDisplay, setWorkoutDisplay] = useState([]);
   const [workoutIndex, setWorkoutIndex] = useState(0);
@@ -18,8 +20,6 @@ const DisplayWorkout = (props) => {
   useEffect(() => {
     setWarmupFirst();
   }, []);
-
-  const getWorkoutResults = () => {};
 
   let setWarmupFirst = async () => {
     let workoutTwo = workout;
@@ -49,49 +49,16 @@ const DisplayWorkout = (props) => {
       return indx === workoutIndex;
     })
     .map((ele) => {
-      // let results = axios
-      //   .get(`http://localhost:4169/api/workout/results/${ele.id}`)
-      //   .then((res) => res.data);
-      // console.log(results);
       return (
         <View style={styles.card}>
-          <View style={styles.videoContainer}>
-            <Text>{ele.name}</Text>
-            <WebView
-              style={{flex: 1}}
-              javaScriptEnabled={true}
-              source={{
-                uri: ele.url,
-              }}
-              // style={{
-              //   width: 200,
-              //   height: 200,
-              //   backgroundColor: 'blue',
-              //   marginTop: 20,
-              // }}
-            />
-
-            <View>
-              <View style={styles.previousWorkout}>
-                {/* <Text>
-                  Last Workout: {`${results.low_value}/${results.high_value}`}{' '}
-                </Text> */}
-                <Text>Percentage: </Text>
-                <Text>43.2%</Text>
-              </View>
-              <View style={styles.previousWorkout}>
-                <Text>Total: 78/154 </Text>
-                <Text>Percentage: 50.1%</Text>
-              </View>
-            </View>
-          </View>
+          <WorkoutCard name={ele.name} url={ele.url} id={ele.id} />
         </View>
       );
     });
 
   return (
     <View style={{height: '100%', alignItems: 'center'}}>
-      <ScrollView>
+      <ScrollView style={{width: '100%'}}>
         {eachWorkout}
         <View style={styles.workoutButtonContainer}>
           <TouchableOpacity
@@ -113,17 +80,12 @@ const DisplayWorkout = (props) => {
 export default DisplayWorkout;
 
 const styles = StyleSheet.create({
-  videoContainer: {
-    height: 250,
-    width: 300,
-    backgroundColor: 'white',
-  },
   previousWorkout: {
     flexDirection: 'row',
   },
   card: {
-    height: 300,
-    width: 350,
+    height: 500,
+    // width: '100%',
     backgroundColor: 'white',
     alignItems: 'center',
     marginBottom: 20,

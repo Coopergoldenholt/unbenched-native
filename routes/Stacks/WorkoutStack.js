@@ -1,8 +1,8 @@
 import React from 'react';
 import StartWorkout from '../../app/screens/Workout/StartWorkout';
-import StrengthWorkout from '../../app/screens/Workout/components/StrengthModal';
 import BasketballWorkout from '../../app/screens/Workout/components/WorkoutModal';
 import DisplayWorkout from '../../app/screens/DisplayWorkout/DisplayWorkout';
+
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
