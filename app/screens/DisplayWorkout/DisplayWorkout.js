@@ -64,12 +64,12 @@ const DisplayWorkout = (props) => {
           <TouchableOpacity
             disabled={workoutIndex === 0 ? true : false}
             onPress={() => handleWorkoutPress(-1)}>
-            <Text>Previous Workout</Text>
+            <Text>Previous Drill</Text>
           </TouchableOpacity>
           <TouchableOpacity
             disabled={workoutIndex === workout.length - 1 ? true : false}
             onPress={() => handleWorkoutPress(1)}>
-            <Text>Next Workout</Text>
+            <Text>Next Drill</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

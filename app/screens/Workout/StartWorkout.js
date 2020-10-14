@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import {Tile, Button, Icon, Card} from 'react-native-elements';
-import axios from 'axios';
-// import Card from '../../components/Card';
 
 const StartWorkout = (props) => {
   const [timeSelected, selectTime] = useState();
