@@ -125,7 +125,7 @@ const WorkoutSelection = (props) => {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>Build Your Wokout</Text>
+          <Text style={styles.text}>Build Your Workout</Text>
         </View>
         <View style={styles.workoutsContainer}>{typeOfWorkouts}</View>
         <View style={styles.cancelContainer}>
@@ -136,6 +136,7 @@ const WorkoutSelection = (props) => {
             onPress={() => handleGenerateWorkout()}
             disabled={loading ? true : false}
             loading={loading ? true : false}
+            titleStyle={{color: 'black'}}
             // loadingStyle
             // disabledStyle={{backgroundColor: 'grey'}}
           />

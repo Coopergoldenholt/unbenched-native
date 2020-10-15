@@ -9,10 +9,10 @@ const StartWorkout = (props) => {
   return (
     <ImageBackground
       style={styles.image}
-      source={require('../../../assets/workout-picture.jpg')}>
-      <View style={styles.textContainer}>
+      source={require('../../../assets/workout-picture.jpeg')}>
+      {/* <View style={styles.textContainer}>
         <Text style={styles.text}>Start a Workout</Text>
-      </View>
+      </View> */}
       <View style={styles.buttonContainer}>
         <Button
           onPress={() =>
@@ -33,13 +33,15 @@ const StartWorkout = (props) => {
             })
           }
           buttonStyle={{
-            borderRadius: 0,
+            borderRadius: 3,
+            backgroundColor: '#7392B7',
             marginLeft: 0,
             marginRight: 0,
             marginBottom: 0,
-            width: '100%',
+            width: 300,
           }}
-          title="Start Basketball Workout"
+          title="Basketball Workout"
+          titleStyle={{color: 'black'}}
         />
         <Button
           // icon={<Icon name="code" color="#ffffff" />}
@@ -54,13 +56,16 @@ const StartWorkout = (props) => {
             })
           }
           buttonStyle={{
-            borderRadius: 0,
+            backgroundColor: '#7392B7',
+            borderRadius: 3,
+            marginTop: 15,
             marginLeft: 0,
             marginRight: 0,
             marginBottom: 0,
-            width: '100%',
+            width: 300,
           }}
-          title="Start Strength Workout"
+          titleStyle={{color: 'black'}}
+          title="Athlete Workout"
         />
       </View>
     </ImageBackground>
@@ -82,9 +87,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     // width: '100%',
-    // height: '90%',
+    height: '80%',
     // position: 'absolute',
-    // justifyContent: 'flex-end',
+    justifyContent: 'flex-end',
     marginTop: 10,
     alignItems: 'center',
   },
