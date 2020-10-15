@@ -27,12 +27,13 @@ const WorkoutSelection = (props) => {
 
   const handleGenerateWorkout = async () => {
     setLoading(true);
-    axios
+    await axios
       .get(
         `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
       )
       .then(
         (res) => {
+          setLoading(false);
           if (res.data === 'Workout Not Possible') {
             return Alert.alert(
               'Workout is not possible, try different settings',
@@ -43,7 +44,7 @@ const WorkoutSelection = (props) => {
         },
         // props.startWorkout(res.data)
       );
-    setLoading(false);
+
     // props.navigation.navigate('Workout Display');
   };
 
@@ -131,7 +132,12 @@ const WorkoutSelection = (props) => {
           <Button
             title={'Start Workout'}
             raised={true}
+            buttonStyle={{backgroundColor: '#7392B7', width: 200, height: 50}}
             onPress={() => handleGenerateWorkout()}
+            disabled={loading ? true : false}
+            loading={loading ? true : false}
+            // loadingStyle
+            // disabledStyle={{backgroundColor: 'grey'}}
           />
         </View>
       </ScrollView>
@@ -228,7 +234,8 @@ const styles = StyleSheet.create({
     zIndex: -1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 40,
+    marginTop: 20,
+    marginBottom: 60,
   },
   timeContainer: {
     flexDirection: 'row',
