@@ -1,7 +1,6 @@
 import React from 'react';
-import StartWorkout from '../../app/screens/Workout/StartWorkout';
-import BasketballWorkout from '../../app/screens/Workout/components/WorkoutModal';
-import DisplayWorkout from '../../app/screens/DisplayWorkout/DisplayWorkout';
+import DrillHome from '../../app/screens/Drills/Drills';
+import Drill from '../../app/screens/Drills/components/Drill';
 
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -22,9 +21,13 @@ const ScreenStack = (props) => {
         },
       }}>
       {/* <Stack.Screen name="Home" component={HomeNavigator} /> */}
-      <Stack.Screen name="StartWorkout" component={StartWorkout} />
-      <Stack.Screen name="Select Workout" component={BasketballWorkout} />
-      <Stack.Screen name="DisplayWorkout" component={DisplayWorkout} />
+      <Stack.Screen name="Drills" component={DrillHome} />
+      <Stack.Screen
+        name="Drill"
+        component={Drill}
+        options={({route}) => ({title: route.params.name})}
+      />
+
       {/* <Stack.Screen name="Strength Workout" component={StrengthWorkout} /> */}
     </Stack.Navigator>
   );

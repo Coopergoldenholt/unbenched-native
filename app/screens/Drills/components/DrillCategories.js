@@ -13,14 +13,18 @@ import DrillDisplay from './DrillDisplay';
 const DrillCategories = (props) => {
   const [selected, setSelected] = useState(false);
 
-  console.log(props.drills);
-
   const filterDrills = props.drills
     .filter((ele) => {
       return ele.type === props.type;
     })
     .map((ele) => {
-      return <DrillDisplay title={ele.name} />;
+      return (
+        <DrillDisplay
+          drill={ele}
+          navigation={props.navigation}
+          title={ele.name}
+        />
+      );
     });
 
   return (
@@ -38,7 +42,6 @@ const DrillCategories = (props) => {
       </TouchableOpacity>
       {/* <DrillCategories /> */}
       {selected ? filterDrills : null}
-      {}
     </>
   );
 };

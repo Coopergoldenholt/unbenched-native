@@ -34,7 +34,7 @@ const StartWorkout = (props) => {
           }
           buttonStyle={{
             borderRadius: 3,
-            backgroundColor: '#7392B7',
+            backgroundColor: '#F2C57C',
             marginLeft: 0,
             marginRight: 0,
             marginBottom: 0,
@@ -56,7 +56,7 @@ const StartWorkout = (props) => {
             })
           }
           buttonStyle={{
-            backgroundColor: '#7392B7',
+            backgroundColor: '#F2C57C',
             borderRadius: 3,
             marginTop: 15,
             marginLeft: 0,

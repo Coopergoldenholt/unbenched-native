@@ -1,22 +1,51 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Dashboard from '../../app/screens/Dashboard/Dashboard';
-import Games from '../../app/screens/Games/Games';
+import Icon from 'react-native-vector-icons/Feather';
+
 import User from '../../app/screens/User/User';
-import DisplayWorkout from '../../app/screens/DisplayWorkout/DisplayWorkout';
+
 import WorkoutStack from './WorkoutStack';
-import Drills from '../../app/screens/Drills/Drills';
+import DrillStack from './DrillStack';
 
 const Tab = createBottomTabNavigator();
 
 const DashBoardStack = (props) => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: 'white',
+        inactiveTintColor: 'black',
+        // showLabel: false,
+        style: {backgroundColor: '#7392B7'},
+      }}>
       {/* <Tab.Screen name="Dashboard" component={Dashboard} />
       <Tab.Screen name="Games" component={Games} /> */}
-      <Tab.Screen name="Workout" component={WorkoutStack} />
-      <Tab.Screen name="Drills" component={Drills} />
-      <Tab.Screen name="User" component={User} />
+      <Tab.Screen
+        name="Workout"
+        component={WorkoutStack}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
+        }}
+      />
+      <Tab.Screen
+        name="Drills"
+        component={DrillStack}
+        options={{
+          tabBarLabel: 'Drills',
+          tabBarIcon: ({color}) => (
+            <Icon name="dribbble" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="User"
+        component={User}
+        options={{
+          tabBarLabel: 'Drills',
+          tabBarIcon: ({color}) => <Icon name="user" color={color} size={26} />,
+        }}
+      />
     </Tab.Navigator>
   );
 };
