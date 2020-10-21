@@ -7,7 +7,7 @@ import DrillCategories from './components/DrillCategories';
 
 const Drills = (props) => {
   const [drills, setDrills] = useState([]);
-  console.log(props.navigation);
+
   useEffect(() => {
     axios
       .get('http://localhost:4169/api/drills')
@@ -27,7 +27,12 @@ const Drills = (props) => {
         label="Three Point Shooting"
         navigation={props.navigation}
       />
-      <DrillCategories type="dribbling" label="Dribbling" drills={drills} />
+      <DrillCategories
+        type="dribbling"
+        label="Dribbling"
+        drills={drills}
+        navigation={props.navigation}
+      />
       <DrillCategories
         type="free_throws"
         label="Free Throws"

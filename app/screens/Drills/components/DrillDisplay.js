@@ -4,6 +4,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 const DrillDisplay = (props) => {
+  console.log(props.drill);
   return (
     <TouchableOpacity
       onPress={() =>

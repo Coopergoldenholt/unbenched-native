@@ -12,6 +12,7 @@ import DrillDisplay from './DrillDisplay';
 
 const DrillCategories = (props) => {
   const [selected, setSelected] = useState(false);
+  console.log(props.navigation);
 
   const filterDrills = props.drills
     .filter((ele) => {

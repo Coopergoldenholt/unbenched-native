@@ -13,10 +13,10 @@ const DashBoardStack = (props) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: 'white',
+        activeTintColor: '#7392B7',
         inactiveTintColor: 'black',
         // showLabel: false,
-        style: {backgroundColor: '#7392B7'},
+        // style: {backgroundColor: '#7392B7'},
       }}>
       {/* <Tab.Screen name="Dashboard" component={Dashboard} />
       <Tab.Screen name="Games" component={Games} /> */}
@@ -42,7 +42,7 @@ const DashBoardStack = (props) => {
         name="User"
         component={User}
         options={{
-          tabBarLabel: 'Drills',
+          tabBarLabel: 'User',
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={26} />,
         }}
       />

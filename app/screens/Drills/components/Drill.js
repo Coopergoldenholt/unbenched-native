@@ -8,17 +8,26 @@ import {
   SafeAreaView,
 } from 'react-native';
 import axios from 'axios';
-
+import {Button} from 'react-native-elements';
 import {WebView} from 'react-native-webview';
 
-const WorkoutCard = (props) => {
+import Modal from './EnterDrillStatsModal';
+import {set} from 'react-native-reanimated';
+
+const Drill = (props) => {
+  const {drill} = props.route.params;
   const [previousWorkouts, setPreviousWorkouts] = useState([]);
-  console.log(props.route.params);
+  const [isModalVisible, setModalVisibility] = useState(false);
+  const [lowValue, setLowValue] = useState();
+  const [highValue, setHighValue] = useState();
+
   useEffect(() => {
     axios
-      .get(`http://localhost:4169/api/workout/results/${props.id}`)
+      .get(`http://localhost:4169/api/workout/results/${drill.id}`)
       .then((res) => setPreviousWorkouts(res.data));
   }, [props.id]);
+
+  console.log(drill);
 
   let totalHigh = previousWorkouts.reduce((acc, ele) => {
     return (acc += parseInt(ele.high_value));
@@ -28,10 +37,22 @@ const WorkoutCard = (props) => {
     return (acc += parseInt(ele.low_value));
   }, 0);
 
-  console.log(previousWorkouts);
-  console.log(totalHigh);
+  // console.log(previousWorkouts);
+  // console.log(totalHigh);
 
   const perc = Math.round((totalLow / totalHigh) * 10000) / 100;
+
+  const completedDrill = async () => {
+    console.log('here');
+    setModalVisibility(false);
+    await axios
+      .post(`http://localhost:4169/api/workout/complete`, {
+        lowValue: lowValue,
+        highValue: highValue,
+        workoutId: drill.id,
+      })
+      .then((res) => console.log(res.data));
+  };
 
   return (
     <View style={styles.container}>
@@ -43,7 +64,7 @@ const WorkoutCard = (props) => {
           style={{flex: 1}}
           javaScriptEnabled={true}
           source={{
-            uri: props.url,
+            uri: drill.url,
           }}
           // style={{
           //   width: 200,
@@ -78,18 +99,59 @@ const WorkoutCard = (props) => {
             <Text style={styles.text}>{perc}%</Text>
           </View>
         </SafeAreaView>
+      ) : (
+        <Text>No Data On This Drill</Text>
+      )}
+      {drill.workout_data ? (
+        <Button
+          onPress={() => setModalVisibility(!isModalVisible)}
+          buttonStyle={{
+            backgroundColor: '#7392B7',
+            borderRadius: 3,
+            marginTop: 15,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            width: 300,
+          }}
+          titleStyle={{color: 'black'}}
+          title="Insert Drill"
+        />
+      ) : (
+        <Button
+          onPress={() => setModalVisibility(!isModalVisible)}
+          buttonStyle={{
+            backgroundColor: '#7392B7',
+            borderRadius: 3,
+            marginTop: 15,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            width: 300,
+          }}
+          titleStyle={{color: 'black'}}
+          title="Insert Drill"
+        />
+      )}
+      {isModalVisible ? (
+        <Modal
+          completedDrill={completedDrill}
+          setHighValue={setHighValue}
+          setLowValue={setLowValue}
+          setModalVisibility={setModalVisibility}
+          display={isModalVisible}
+        />
       ) : null}
     </View>
   );
 };
 
-export default WorkoutCard;
+export default Drill;
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
-    // backgroundColor: 'white',
+    flex: 1,
+    backgroundColor: 'white',
   },
   videoContainer: {
     height: 300,

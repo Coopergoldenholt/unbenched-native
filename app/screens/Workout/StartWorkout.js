@@ -34,14 +34,14 @@ const StartWorkout = (props) => {
           }
           buttonStyle={{
             borderRadius: 3,
-            backgroundColor: '#F2C57C',
+            backgroundColor: '#7392B7',
             marginLeft: 0,
             marginRight: 0,
             marginBottom: 0,
             width: 300,
           }}
           title="Basketball Workout"
-          titleStyle={{color: 'black'}}
+          titleStyle={{color: 'white'}}
         />
         <Button
           // icon={<Icon name="code" color="#ffffff" />}
@@ -56,7 +56,7 @@ const StartWorkout = (props) => {
             })
           }
           buttonStyle={{
-            backgroundColor: '#F2C57C',
+            backgroundColor: '#7392B7',
             borderRadius: 3,
             marginTop: 15,
             marginLeft: 0,
@@ -64,7 +64,7 @@ const StartWorkout = (props) => {
             marginBottom: 0,
             width: 300,
           }}
-          titleStyle={{color: 'black'}}
+          titleStyle={{color: 'white'}}
           title="Athlete Workout"
         />
       </View>
