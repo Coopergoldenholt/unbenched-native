@@ -4,7 +4,6 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 const DrillDisplay = (props) => {
-  console.log(props.drill);
   return (
     <TouchableOpacity
       onPress={() =>
@@ -14,7 +13,9 @@ const DrillDisplay = (props) => {
         })
       }
       style={styles.container}>
-      <Text>{props.title}</Text>
+      <View>
+        <Text style={{fontSize: 18}}>{props.title}</Text>
+      </View>
       <Icon name={'chevron-right'} size={30} color="black" />
     </TouchableOpacity>
   );
@@ -29,7 +30,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderColor: 'black',
     borderBottomWidth: 1,
-    marginLeft: 20,
+    marginLeft: 30,
     marginRight: 15,
+    marginBottom: 10,
   },
 });

@@ -15,9 +15,9 @@ const User = () => {
   });
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
       <Text>User</Text>
-      <Text>Current Season: {currentSeason}</Text>
+      {/* <Text>Current Season: {currentSeason}</Text>
       <DropDownPicker
         items={seasonPickerItems}
         defaultValue={currentSeason}
@@ -29,8 +29,8 @@ const User = () => {
           marginTop: 10,
         }}
         onChangeItem={(item) => setSeasonPicker(item.value)}
-      />
-      {seasonPicker !== currentSeason ? (
+      /> */}
+      {/* {seasonPicker !== currentSeason ? (
         <TouchableOpacity>
           <Text>Confirm Change?</Text>
         </TouchableOpacity>
@@ -41,7 +41,7 @@ const User = () => {
       <CreateNewSeason
         display={displaySeasonModal}
         displayModal={setDisplaySeasonModal}
-      />
+      /> */}
     </SafeAreaView>
   );
 };

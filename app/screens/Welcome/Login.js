@@ -45,7 +45,7 @@ function Login(props) {
 
   return (
     <ImageBackground
-      // source={require('../../assets/home-background.jpg')}
+      source={require('../../../assets/login-background.jpg')}
       style={styles.background}>
       <TextInput
         placeholder="E-mail"
@@ -66,7 +66,7 @@ function Login(props) {
         onPress={loading ? null : () => handleLogin()}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      {loading ? <ActivityIndicator size="large" color="#c48273" /> : null}
+      {loading ? <ActivityIndicator size="large" color="" /> : null}
     </ImageBackground>
   );
 }
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     width: '50%',
     marginTop: 10,
     paddingTop: 10,
-    backgroundColor: '#c48273',
+    backgroundColor: '#7392B7',
     borderRadius: 5,
     alignItems: 'center',
     padding: 10,

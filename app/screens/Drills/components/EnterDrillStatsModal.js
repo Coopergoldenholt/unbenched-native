@@ -12,6 +12,7 @@ const DrillStatModal = (props) => {
             onChangeText={(text) => props.setLowValue(text)}
             placeholder="Shots Made"
             keyboardType="numeric"
+            containerStyle={{marginTop: 20}}
           />
           <Input
             onChangeText={(text) => props.setHighValue(text)}
@@ -23,7 +24,7 @@ const DrillStatModal = (props) => {
             <Button
               onPress={() => props.setModalVisibility(false)}
               buttonStyle={{
-                backgroundColor: 'red',
+                backgroundColor: 'firebrick',
                 borderRadius: 3,
                 marginTop: 15,
                 marginLeft: 0,

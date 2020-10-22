@@ -9,7 +9,7 @@ const StartWorkout = (props) => {
   return (
     <ImageBackground
       style={styles.image}
-      source={require('../../../assets/workout-picture.jpeg')}>
+      source={require('../../../assets/background.jpg')}>
       {/* <View style={styles.textContainer}>
         <Text style={styles.text}>Start a Workout</Text>
       </View> */}

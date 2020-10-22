@@ -27,23 +27,31 @@ const WorkoutSelection = (props) => {
 
   const handleGenerateWorkout = async () => {
     setLoading(true);
-    await axios
-      .get(
-        `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
-      )
-      .then(
-        (res) => {
-          setLoading(false);
-          if (res.data === 'Workout Not Possible') {
-            return Alert.alert(
-              'Workout is not possible, try different settings',
-            );
-          } else {
-            props.navigation.navigate('DisplayWorkout', {workout: res.data});
-          }
-        },
-        // props.startWorkout(res.data)
-      );
+    if (timeSelected === 0) {
+      setLoading(false);
+      return Alert.alert('Please Select a Time');
+    } else if (!typeOfDrillsSelected[0]) {
+      setLoading(false);
+      return Alert.alert('Please Select at least one Workout');
+    } else {
+      await axios
+        .get(
+          `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
+        )
+        .then(
+          (res) => {
+            setLoading(false);
+            if (res.data === 'Workout Not Possible') {
+              return Alert.alert(
+                'Workout is not possible, try different settings',
+              );
+            } else {
+              props.navigation.navigate('DisplayWorkout', {workout: res.data});
+            }
+          },
+          // props.startWorkout(res.data)
+        );
+    }
 
     // props.navigation.navigate('Workout Display');
   };
@@ -106,7 +114,7 @@ const WorkoutSelection = (props) => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView style={{backgroundColor: 'white'}}>
         <View style={styles.timeContainer}>
           <Text style={styles.text}>How Long Is Your Workout?</Text>
 

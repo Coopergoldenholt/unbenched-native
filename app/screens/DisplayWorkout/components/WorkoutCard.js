@@ -8,11 +8,15 @@ import {
   SafeAreaView,
 } from 'react-native';
 import axios from 'axios';
-
+import InsertWorkoutModal from '../../Drills/components/EnterDrillStatsModal';
+import {Button} from 'react-native-elements';
 import {WebView} from 'react-native-webview';
 
 const WorkoutCard = (props) => {
   const [previousWorkouts, setPreviousWorkouts] = useState([]);
+  const [displayModal, setDisplayModal] = useState(false);
+  const [lowValue, setLowValue] = useState(0);
+  const [highValue, setHighValue] = useState(0);
 
   useEffect(() => {
     axios
@@ -28,10 +32,19 @@ const WorkoutCard = (props) => {
     return (acc += parseInt(ele.low_value));
   }, 0);
 
-  console.log(previousWorkouts);
-  console.log(totalHigh);
-
   const perc = Math.round((totalLow / totalHigh) * 10000) / 100;
+
+  const completedDrill = async () => {
+    console.log('here');
+    setDisplayModal(false);
+    await axios
+      .post(`http://localhost:4169/api/workout/complete`, {
+        lowValue: lowValue,
+        highValue: highValue,
+        workoutId: props.id,
+      })
+      .then((res) => console.log(res.data));
+  };
 
   return (
     <View style={styles.container}>
@@ -77,6 +90,29 @@ const WorkoutCard = (props) => {
             </Text>
             <Text style={styles.text}>{perc}%</Text>
           </View>
+          <View style={{alignItems: 'center'}}>
+            <Button
+              onPress={() => setDisplayModal(!displayModal)}
+              buttonStyle={{
+                backgroundColor: '#7392B7',
+                borderRadius: 3,
+                marginTop: 15,
+                marginLeft: 0,
+                marginRight: 0,
+                marginBottom: 0,
+                width: 300,
+              }}
+              titleStyle={{color: 'black'}}
+              title="Insert Drill"
+            />
+          </View>
+          <InsertWorkoutModal
+            display={displayModal}
+            setModalVisibility={setDisplayModal}
+            completedDrill={completedDrill}
+            setLowValue={setLowValue}
+            setHighValue={setHighValue}
+          />
         </SafeAreaView>
       ) : null}
     </View>

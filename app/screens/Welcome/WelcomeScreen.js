@@ -9,17 +9,16 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import {WebView} from 'react-native-webview';
 
 export default function WelcomeScreen({navigation}) {
   return (
     <ImageBackground
-      // source={require('../../assets/home-background.jpg')}
+      source={require('../../../assets/login-background.jpg')}
       style={styles.background}>
       {/* <TextInput placeholder="E-mail" style={styles.input} /> */}
       {/* <Image source={{"https://static.thenounproject.com/png/1081856-200.png"}} /> */}
 
-      <Text style={styles.text}>Proper-T</Text>
+      <Text style={styles.text}>UnBenched</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     paddingTop: 10,
-    backgroundColor: '#c48273',
+    backgroundColor: '#7392B7',
     borderRadius: 5,
     alignItems: 'center',
     padding: 10,

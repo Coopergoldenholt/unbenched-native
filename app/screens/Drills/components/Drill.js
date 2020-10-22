@@ -103,35 +103,40 @@ const Drill = (props) => {
         <Text>No Data On This Drill</Text>
       )}
       {drill.workout_data ? (
-        <Button
-          onPress={() => setModalVisibility(!isModalVisible)}
-          buttonStyle={{
-            backgroundColor: '#7392B7',
-            borderRadius: 3,
-            marginTop: 15,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-            width: 300,
-          }}
-          titleStyle={{color: 'black'}}
-          title="Insert Drill"
-        />
+        <View>
+          <Button
+            style={{marginTop: 10, alignItems: 'center'}}
+            onPress={() => setModalVisibility(!isModalVisible)}
+            buttonStyle={{
+              backgroundColor: '#7392B7',
+              borderRadius: 3,
+              marginTop: 15,
+              marginLeft: 0,
+              marginRight: 0,
+              marginBottom: 0,
+              width: 300,
+            }}
+            titleStyle={{color: 'black'}}
+            title="Insert Drill"
+          />
+        </View>
       ) : (
-        <Button
-          onPress={() => setModalVisibility(!isModalVisible)}
-          buttonStyle={{
-            backgroundColor: '#7392B7',
-            borderRadius: 3,
-            marginTop: 15,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-            width: 300,
-          }}
-          titleStyle={{color: 'black'}}
-          title="Insert Drill"
-        />
+        <View style={{marginTop: 10, alignItems: 'center'}}>
+          <Button
+            onPress={() => setModalVisibility(!isModalVisible)}
+            buttonStyle={{
+              backgroundColor: '#7392B7',
+              borderRadius: 3,
+              marginTop: 15,
+              marginLeft: 0,
+              marginRight: 0,
+              marginBottom: 0,
+              width: 300,
+            }}
+            titleStyle={{color: 'black'}}
+            title="Insert Drill"
+          />
+        </View>
       )}
       {isModalVisible ? (
         <Modal
