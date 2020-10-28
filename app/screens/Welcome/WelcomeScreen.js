@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,8 +9,22 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import IAP from 'react-native-iap';
+
+const productIds = ['merchant.app.unbenched.unbenched'];
 
 export default function WelcomeScreen({navigation}) {
+  const [user, setUser] = useState({
+    name: 'Jonas',
+    subscription: undefined,
+  });
+
+  useEffect(() => {
+    IAP.getProducts(productIds).then((res) => {
+      console.log('hello', res);
+    });
+  }, []);
+
   return (
     <ImageBackground
       source={require('../../../assets/login-background.jpg')}
@@ -27,7 +41,9 @@ export default function WelcomeScreen({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Register')}>
+          // onPress={() => navigation.navigate('Subscribe')}
+          // onPress={() => this.check()}
+        >
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>

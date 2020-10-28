@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, Text, Alert} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Button, Avatar} from 'react-native-elements';
+
 import DropDownPicker from 'react-native-dropdown-picker';
 import CreateNewSeason from './components/CreateNewSeason';
 
@@ -16,32 +17,16 @@ const User = () => {
 
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
-      <Text>User</Text>
-      {/* <Text>Current Season: {currentSeason}</Text>
-      <DropDownPicker
-        items={seasonPickerItems}
-        defaultValue={currentSeason}
-        placeholder="Seasons"
-        containerStyle={{
-          height: 40,
-          width: 200,
-          marginBottom: 10,
-          marginTop: 10,
+      <Avatar
+        size="large"
+        rounded
+        source={{
+          uri:
+            'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
         }}
-        onChangeItem={(item) => setSeasonPicker(item.value)}
-      /> */}
-      {/* {seasonPicker !== currentSeason ? (
-        <TouchableOpacity>
-          <Text>Confirm Change?</Text>
-        </TouchableOpacity>
-      ) : null}
-      <TouchableOpacity onPress={() => setDisplaySeasonModal(true)}>
-        <Text>Create New Season</Text>
-      </TouchableOpacity>
-      <CreateNewSeason
-        display={displaySeasonModal}
-        displayModal={setDisplaySeasonModal}
-      /> */}
+      />
+      <Text>Cooper Holt</Text>
+      <Button title="Log Out" />
     </SafeAreaView>
   );
 };

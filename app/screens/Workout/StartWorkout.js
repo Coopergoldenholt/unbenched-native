@@ -48,7 +48,14 @@ const StartWorkout = (props) => {
           onPress={() =>
             props.navigation.navigate('Select Workout', {
               drills: [
-                {label: 'Biceps', value: 'biceps'},
+                {
+                  label: 'Strength',
+                  value: 'strength',
+                  types: [
+                    {label: 'Upper Body', value: 'upperBody'},
+                    {label: 'Lower Body', value: 'lowerBack'},
+                  ],
+                },
                 {label: 'Triceps', value: 'Tricpes'},
                 {label: 'Vertical', value: 'vertical'},
               ],

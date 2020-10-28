@@ -18,12 +18,15 @@ import {connect} from 'react-redux';
 import {startWorkout} from '../../../../ducks/reducers/workoutReducer';
 
 import DisplayTypeOfWorkout from './DisplayTypeOfWorkouts';
+import WorkoutWithTypes from './WorkoutWithTypes';
+import TypeModal from './TypeModal';
 
 const WorkoutSelection = (props) => {
   const [timeSelected, setTimeSelect] = useState(0);
   const [typeOfDrillsSelected, setDrillsSelected] = useState([]);
   const [loading, setLoading] = useState(false);
   const [typeOfDrills, setDrills] = useState(props.route.params.drills);
+  const [pressedDrill, setPressedDrill] = useState();
 
   const handleGenerateWorkout = async () => {
     setLoading(true);
@@ -77,7 +80,14 @@ const WorkoutSelection = (props) => {
       setDrillsSelected(newArr);
       if (props.route.params.type === 'strength') {
         setDrills([
-          {label: 'Biceps', value: 'biceps'},
+          {
+            label: 'Strength',
+            value: 'strength',
+            types: [
+              {label: 'Upper Body', value: 'upperBody'},
+              {label: 'Lower Body', value: 'lowerBack'},
+            ],
+          },
           {label: 'Triceps', value: 'Tricpes'},
           {label: 'Vertical', value: 'vertical'},
         ]);
@@ -102,14 +112,25 @@ const WorkoutSelection = (props) => {
   };
 
   const typeOfWorkouts = typeOfDrills.map((ele) => {
-    return (
-      <DisplayTypeOfWorkout
-        typeOfDrillsSelected={typeOfDrillsSelected}
-        handleDrillSelect={handleDrillSelect}
-        typeOfWorkout={ele.label}
-        value={ele.value}
-      />
-    );
+    if (ele.types) {
+      return (
+        <WorkoutWithTypes
+          typeOfDrillsSelected={typeOfDrillsSelected}
+          handleDrillSelect={setPressedDrill}
+          typeOfWorkout={ele.label}
+          types={ele.types}
+        />
+      );
+    } else {
+      return (
+        <DisplayTypeOfWorkout
+          typeOfDrillsSelected={typeOfDrillsSelected}
+          handleDrillSelect={handleDrillSelect}
+          typeOfWorkout={ele.label}
+          value={ele.value}
+        />
+      );
+    }
   });
 
   return (
@@ -149,6 +170,15 @@ const WorkoutSelection = (props) => {
             // disabledStyle={{backgroundColor: 'grey'}}
           />
         </View>
+        {pressedDrill ? (
+          <TypeModal
+            typeOfDrillsSelected={typeOfDrillsSelected}
+            handleDrillSelect={handleDrillSelect}
+            setPressedDrill={setPressedDrill}
+            drills={pressedDrill}
+            display={true}
+          />
+        ) : null}
       </ScrollView>
     </>
   );

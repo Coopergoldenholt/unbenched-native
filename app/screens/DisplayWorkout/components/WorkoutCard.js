@@ -90,31 +90,31 @@ const WorkoutCard = (props) => {
             </Text>
             <Text style={styles.text}>{perc}%</Text>
           </View>
-          <View style={{alignItems: 'center'}}>
-            <Button
-              onPress={() => setDisplayModal(!displayModal)}
-              buttonStyle={{
-                backgroundColor: '#7392B7',
-                borderRadius: 3,
-                marginTop: 15,
-                marginLeft: 0,
-                marginRight: 0,
-                marginBottom: 0,
-                width: 300,
-              }}
-              titleStyle={{color: 'black'}}
-              title="Insert Drill"
-            />
-          </View>
-          <InsertWorkoutModal
-            display={displayModal}
-            setModalVisibility={setDisplayModal}
-            completedDrill={completedDrill}
-            setLowValue={setLowValue}
-            setHighValue={setHighValue}
-          />
         </SafeAreaView>
       ) : null}
+      <View style={{alignItems: 'center'}}>
+        <Button
+          onPress={() => setDisplayModal(!displayModal)}
+          buttonStyle={{
+            backgroundColor: '#7392B7',
+            borderRadius: 3,
+            marginTop: 15,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            width: 300,
+          }}
+          titleStyle={{color: 'black'}}
+          title="Insert Drill"
+        />
+      </View>
+      <InsertWorkoutModal
+        display={displayModal}
+        setModalVisibility={setDisplayModal}
+        completedDrill={completedDrill}
+        setLowValue={setLowValue}
+        setHighValue={setHighValue}
+      />
     </View>
   );
 };
