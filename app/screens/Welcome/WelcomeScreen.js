@@ -41,7 +41,7 @@ export default function WelcomeScreen({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          // onPress={() => navigation.navigate('Subscribe')}
+          onPress={() => navigation.navigate('Register')}
           // onPress={() => this.check()}
         >
           <Text style={styles.buttonText}>Register</Text>

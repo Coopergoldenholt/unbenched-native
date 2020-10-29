@@ -17,7 +17,7 @@ function Register(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState('');
+  const [name, setName] = useState({firstName: undefined, lastName: undefined});
 
   const handleRegister = () => {
     if (!email) {
@@ -33,7 +33,8 @@ function Register(props) {
         .post('http://localhost:4169/api/user/register', {
           email: email,
           password: password,
-          name: name,
+          firstName: name.firstName,
+          lastName: name.lastName,
         })
         // .post("http://localhost:4068/api/signup", {
         // 	email: email,
@@ -58,10 +59,16 @@ function Register(props) {
       // source={require('../../assets/home-background.jpg')}
       style={styles.background}>
       <TextInput
-        placeholder="Name"
+        placeholder="First Name"
         style={styles.input}
         placeholderTextColor="black"
-        onChangeText={(name) => setName(name)}
+        onChangeText={(name) => setName({firstName: name})}
+      />
+      <TextInput
+        placeholder="Last Name"
+        style={styles.input}
+        placeholderTextColor="black"
+        onChangeText={(name) => setName({lastName: name})}
       />
       <TextInput
         placeholder="E-mail"

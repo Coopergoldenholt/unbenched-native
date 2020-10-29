@@ -10,13 +10,13 @@ const DrillStatModal = (props) => {
         <View style={styles.container}>
           <Input
             onChangeText={(text) => props.setLowValue(text)}
-            placeholder="Shots Made"
+            placeholder={props.lowValueName}
             keyboardType="numeric"
             containerStyle={{marginTop: 20}}
           />
           <Input
             onChangeText={(text) => props.setHighValue(text)}
-            placeholder="Shots Attempted"
+            placeholder={props.highValueName}
             keyboardType="numeric"
           />
 

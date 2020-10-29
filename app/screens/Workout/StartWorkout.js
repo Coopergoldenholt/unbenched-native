@@ -40,7 +40,7 @@ const StartWorkout = (props) => {
             marginBottom: 0,
             width: 300,
           }}
-          title="Basketball Workout"
+          title="Basketball Training"
           titleStyle={{color: 'white'}}
         />
         <Button
@@ -72,7 +72,7 @@ const StartWorkout = (props) => {
             width: 300,
           }}
           titleStyle={{color: 'white'}}
-          title="Athlete Workout"
+          title="Athlete Training"
         />
       </View>
     </ImageBackground>

@@ -3,7 +3,6 @@ import {SafeAreaView, Text, Alert} from 'react-native';
 import {Button, Avatar} from 'react-native-elements';
 
 import DropDownPicker from 'react-native-dropdown-picker';
-import CreateNewSeason from './components/CreateNewSeason';
 
 const User = () => {
   const [currentSeason, setCurrentSeason] = useState('19-20');

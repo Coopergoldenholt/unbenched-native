@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
 import {Button} from 'react-native-elements';
@@ -20,14 +21,17 @@ const Drill = (props) => {
   const [isModalVisible, setModalVisibility] = useState(false);
   const [lowValue, setLowValue] = useState();
   const [highValue, setHighValue] = useState();
+  const [videoLoading, setVideoLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`http://localhost:4169/api/workout/results/${drill.id}`)
-      .then((res) => setPreviousWorkouts(res.data));
+      .then((res) => {
+        setPreviousWorkouts(res.data);
+      });
   }, [props.id]);
 
-  console.log(drill);
+  console.log('Hello', previousWorkouts);
 
   let totalHigh = previousWorkouts.reduce((acc, ele) => {
     return (acc += parseInt(ele.high_value));
@@ -54,7 +58,7 @@ const Drill = (props) => {
       .then((res) => console.log(res.data));
   };
 
-  return (
+  return previousWorkouts ? (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>{props.name}</Text>
@@ -66,6 +70,7 @@ const Drill = (props) => {
           source={{
             uri: drill.url,
           }}
+          onLoad={() => setVideoLoading(false)}
           // style={{
           //   width: 200,
           //   height: 200,
@@ -73,35 +78,44 @@ const Drill = (props) => {
           //   marginTop: 20,
           // }}
         />
+        {videoLoading ? (
+          <ActivityIndicator
+            style={{position: 'absolute', top: 140, left: 190}}
+            size="large"
+          />
+        ) : null}
       </View>
-
-      {previousWorkouts[0] ? (
-        <SafeAreaView>
-          <View style={styles.previousWorkout}>
-            <Text style={styles.text}>
-              Last Workout:{' '}
-              {`${previousWorkouts[0].low_value}/${previousWorkouts[0].high_value}`}{' '}
-            </Text>
-            {/* <Text>Percentage: </Text> */}
-            <Text style={styles.text}>
-              {Math.round(
-                (previousWorkouts[0].low_value /
-                  previousWorkouts[0].high_value) *
-                  10000,
-              ) / 100}
-              %
-            </Text>
+      {drill.workout_data ? (
+        previousWorkouts[0] ? (
+          <SafeAreaView>
+            <View style={styles.previousWorkout}>
+              <Text style={styles.text}>
+                Last Workout:{' '}
+                {`${previousWorkouts[0].low_value}/${previousWorkouts[0].high_value}`}{' '}
+              </Text>
+              {/* <Text>Percentage: </Text> */}
+              <Text style={styles.text}>
+                {Math.round(
+                  (previousWorkouts[0].low_value /
+                    previousWorkouts[0].high_value) *
+                    10000,
+                ) / 100}
+                %
+              </Text>
+            </View>
+            <View style={styles.previousWorkout}>
+              <Text style={styles.text}>
+                Total: {totalLow}/{totalHigh}{' '}
+              </Text>
+              <Text style={styles.text}>{perc}%</Text>
+            </View>
+          </SafeAreaView>
+        ) : (
+          <View style={{alignItems: 'center', marginTop: 20}}>
+            <Text style={{fontSize: 20}}>No Data On This Drill</Text>
           </View>
-          <View style={styles.previousWorkout}>
-            <Text style={styles.text}>
-              Total: {totalLow}/{totalHigh}{' '}
-            </Text>
-            <Text style={styles.text}>{perc}%</Text>
-          </View>
-        </SafeAreaView>
-      ) : (
-        <Text>No Data On This Drill</Text>
-      )}
+        )
+      ) : null}
       {drill.workout_data ? (
         <View>
           <Button
@@ -121,25 +135,19 @@ const Drill = (props) => {
           />
         </View>
       ) : (
-        <View style={{marginTop: 10, alignItems: 'center'}}>
-          <Button
-            onPress={() => setModalVisibility(!isModalVisible)}
-            buttonStyle={{
-              backgroundColor: '#7392B7',
-              borderRadius: 3,
-              marginTop: 15,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-              width: 300,
-            }}
-            titleStyle={{color: 'black'}}
-            title="Insert Drill"
-          />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 20}}>Sorry You Can't Track This Drill</Text>
         </View>
       )}
       {isModalVisible ? (
         <Modal
+          lowValueName={drill.low_value_name}
+          highValueName={drill.high_value_name}
           completedDrill={completedDrill}
           setHighValue={setHighValue}
           setLowValue={setLowValue}
@@ -148,6 +156,8 @@ const Drill = (props) => {
         />
       ) : null}
     </View>
+  ) : (
+    <ActivityIndicator />
   );
 };
 

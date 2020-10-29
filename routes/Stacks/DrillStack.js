@@ -17,7 +17,7 @@ const ScreenStack = (props) => {
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
-          color: 'black',
+          color: 'white',
         },
       }}>
       {/* <Stack.Screen name="Home" component={HomeNavigator} /> */}

@@ -22,7 +22,15 @@ const ScreenStack = (props) => {
         },
       }}>
       {/* <Stack.Screen name="Home" component={HomeNavigator} /> */}
-      <Stack.Screen name="StartWorkout" component={StartWorkout} />
+      <Stack.Screen
+        name="StartWorkout"
+        component={StartWorkout}
+        // options={{
+        //   tabBarLabel: 'Home',
+        //   tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
+        // }}
+        options={{title: 'Home'}}
+      />
       <Stack.Screen name="Select Workout" component={BasketballWorkout} />
       <Stack.Screen name="DisplayWorkout" component={DisplayWorkout} />
       {/* <Stack.Screen name="Strength Workout" component={StrengthWorkout} /> */}

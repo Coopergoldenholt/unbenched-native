@@ -70,19 +70,23 @@ const WorkoutCard = (props) => {
       {previousWorkouts[0] ? (
         <SafeAreaView>
           <View style={styles.previousWorkout}>
-            <Text style={styles.text}>
-              Last Workout:{' '}
-              {`${previousWorkouts[0].low_value}/${previousWorkouts[0].high_value}`}{' '}
-            </Text>
-            {/* <Text>Percentage: </Text> */}
-            <Text style={styles.text}>
-              {Math.round(
-                (previousWorkouts[0].low_value /
-                  previousWorkouts[0].high_value) *
-                  10000,
-              ) / 100}
-              %
-            </Text>
+            {previousWorkouts[0].percentages ? (
+              <>
+                <Text style={styles.text}>
+                  Last Workout:{' '}
+                  {`${previousWorkouts[0].low_value}/${previousWorkouts[0].high_value}`}{' '}
+                </Text>
+                {/* <Text>Percentage: </Text> */}
+                <Text style={styles.text}>
+                  {Math.round(
+                    (previousWorkouts[0].low_value /
+                      previousWorkouts[0].high_value) *
+                      10000,
+                  ) / 100}
+                  %
+                </Text>{' '}
+              </>
+            ) : null}
           </View>
           <View style={styles.previousWorkout}>
             <Text style={styles.text}>
@@ -92,29 +96,42 @@ const WorkoutCard = (props) => {
           </View>
         </SafeAreaView>
       ) : null}
-      <View style={{alignItems: 'center'}}>
-        <Button
-          onPress={() => setDisplayModal(!displayModal)}
-          buttonStyle={{
-            backgroundColor: '#7392B7',
-            borderRadius: 3,
-            marginTop: 15,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-            width: 300,
-          }}
-          titleStyle={{color: 'black'}}
-          title="Insert Drill"
-        />
-      </View>
-      <InsertWorkoutModal
-        display={displayModal}
-        setModalVisibility={setDisplayModal}
-        completedDrill={completedDrill}
-        setLowValue={setLowValue}
-        setHighValue={setHighValue}
-      />
+      {previousWorkouts[0].workout_data ? (
+        <>
+          <View style={{alignItems: 'center'}}>
+            <Button
+              onPress={() => setDisplayModal(!displayModal)}
+              buttonStyle={{
+                backgroundColor: '#7392B7',
+                borderRadius: 3,
+                marginTop: 15,
+                marginLeft: 0,
+                marginRight: 0,
+                marginBottom: 0,
+                width: 300,
+              }}
+              titleStyle={{color: 'black'}}
+              title="Insert Drill"
+            />
+          </View>
+          <InsertWorkoutModal
+            display={displayModal}
+            setModalVisibility={setDisplayModal}
+            completedDrill={completedDrill}
+            setLowValue={setLowValue}
+            setHighValue={setHighValue}
+          />{' '}
+        </>
+      ) : (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 20}}>Sorry You Can't Track This Drill</Text>
+        </View>
+      )}
     </View>
   );
 };
