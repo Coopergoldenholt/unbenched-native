@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Image} from 'react-native';
 
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -23,10 +24,54 @@ const AuthenticationStack = (props) => {
           color: 'white',
         },
       }}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Subscribe" component={Subscribe} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerTitle: () => (
+            <Image
+              style={{width: 40, height: 40, marginBottom: 10}}
+              source={require('../../assets/Icon_White.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerTitle: () => (
+            <Image
+              style={{width: 40, height: 40, marginBottom: 10}}
+              source={require('../../assets/Icon_White.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerTitle: () => (
+            <Image
+              style={{width: 40, height: 40, marginBottom: 10}}
+              source={require('../../assets/Icon_White.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Subscribe"
+        component={Subscribe}
+        options={{
+          headerTitle: () => (
+            <Image
+              style={{width: 40, height: 40, marginBottom: 10}}
+              source={require('../../assets/Icon_White.png')}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };

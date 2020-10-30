@@ -1,7 +1,7 @@
 import React from 'react';
-import DrillHome from '../../app/screens/Drills/Drills';
-import Drill from '../../app/screens/Drills/components/Drill';
 import {Image} from 'react-native';
+import User from '../../app/screens/User/User';
+import DefaultGym from '../../app/screens/DefaultSettings/DefaultSettings';
 
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -23,8 +23,8 @@ const ScreenStack = (props) => {
       }}>
       {/* <Stack.Screen name="Home" component={HomeNavigator} /> */}
       <Stack.Screen
-        name="Drills"
-        component={DrillHome}
+        name="User"
+        component={User}
         options={{
           headerTitle: () => (
             <Image
@@ -34,11 +34,13 @@ const ScreenStack = (props) => {
           ),
         }}
       />
-      <Stack.Screen
+      <Stack.Screen name="DefaultGym" component={DefaultGym} />
+
+      {/* <Stack.Screen
         name="Drill"
         component={Drill}
         options={({route}) => ({title: route.params.name})}
-      />
+      /> */}
 
       {/* <Stack.Screen name="Strength Workout" component={StrengthWorkout} /> */}
     </Stack.Navigator>
@@ -46,3 +48,9 @@ const ScreenStack = (props) => {
 };
 
 export default ScreenStack;
+
+// function LogoTitle() {
+//   return (
+
+//   );
+// }

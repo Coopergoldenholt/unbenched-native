@@ -54,6 +54,8 @@ function Register(props) {
     }
   };
 
+  console.log(name);
+
   return (
     <ImageBackground
       // source={require('../../assets/home-background.jpg')}
@@ -62,13 +64,17 @@ function Register(props) {
         placeholder="First Name"
         style={styles.input}
         placeholderTextColor="black"
-        onChangeText={(name) => setName({firstName: name})}
+        onChangeText={(firstName) =>
+          setName({lastName: name.lastName, firstName: firstName})
+        }
       />
       <TextInput
         placeholder="Last Name"
         style={styles.input}
         placeholderTextColor="black"
-        onChangeText={(name) => setName({lastName: name})}
+        onChangeText={(lastName) =>
+          setName({firstName: name.firstName, lastName: lastName})
+        }
       />
       <TextInput
         placeholder="E-mail"

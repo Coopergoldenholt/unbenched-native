@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import {Tile, Button, Icon, Card} from 'react-native-elements';
+import {connect} from 'react-redux';
 
 const StartWorkout = (props) => {
   const [timeSelected, selectTime] = useState();
@@ -79,7 +80,9 @@ const StartWorkout = (props) => {
   );
 };
 
-export default StartWorkout;
+const mapStateToProps = (state) => state.user;
+
+export default connect(mapStateToProps)(StartWorkout);
 
 const styles = StyleSheet.create({
   image: {

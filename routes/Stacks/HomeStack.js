@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 
 import User from '../../app/screens/User/User';
-
+import UserStack from './UserStack';
 import WorkoutStack from './WorkoutStack';
 import DrillStack from './DrillStack';
 
@@ -40,7 +40,7 @@ const DashBoardStack = (props) => {
       />
       <Tab.Screen
         name="User"
-        component={User}
+        component={UserStack}
         options={{
           tabBarLabel: 'User',
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={26} />,

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Image} from 'react-native';
 import StartWorkout from '../../app/screens/Workout/StartWorkout';
 import BasketballWorkout from '../../app/screens/Workout/components/WorkoutModal';
 import DisplayWorkout from '../../app/screens/DisplayWorkout/DisplayWorkout';
@@ -29,7 +30,14 @@ const ScreenStack = (props) => {
         //   tabBarLabel: 'Home',
         //   tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
         // }}
-        options={{title: 'Home'}}
+        options={{
+          headerTitle: () => (
+            <Image
+              style={{width: 40, height: 40, marginBottom: 10}}
+              source={require('../../assets/Icon_White.png')}
+            />
+          ),
+        }}
       />
       <Stack.Screen name="Select Workout" component={BasketballWorkout} />
       <Stack.Screen name="DisplayWorkout" component={DisplayWorkout} />
