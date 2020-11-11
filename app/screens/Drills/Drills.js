@@ -10,7 +10,7 @@ const Drills = (props) => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4169/api/drills')
+      .get('http://138.68.247.11:4169/api/drills')
       .then((res) => setDrills(res.data));
   }, []);
   return (

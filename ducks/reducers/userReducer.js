@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
     case `${SAVE_SESSION}`:
       return {...state, user: payload};
     case `${DESTROY_SESSION}`:
-      return {...state, user: payload};
+      return {undefined};
 
     default:
       return state;

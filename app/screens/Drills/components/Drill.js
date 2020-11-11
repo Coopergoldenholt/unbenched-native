@@ -25,13 +25,13 @@ const Drill = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4169/api/workout/results/${drill.id}`)
+      .get(`http://138.68.247.11:4169/api/workout/results/${drill.id}`)
       .then((res) => {
         setPreviousWorkouts(res.data);
       });
   }, [props.id]);
 
-  console.log('Hello', previousWorkouts);
+  console.log(drill);
 
   let totalHigh = previousWorkouts.reduce((acc, ele) => {
     return (acc += parseInt(ele.high_value));
@@ -50,7 +50,7 @@ const Drill = (props) => {
     console.log('here');
     setModalVisibility(false);
     await axios
-      .post(`http://localhost:4169/api/workout/complete`, {
+      .post(`http://138.68.247.11:4169/api/workout/complete`, {
         lowValue: lowValue,
         highValue: highValue,
         workoutId: drill.id,
@@ -85,6 +85,7 @@ const Drill = (props) => {
           />
         ) : null}
       </View>
+      <Text>{`Estimated Time: ${drill.time}`}</Text>
       {drill.workout_data ? (
         previousWorkouts[0] ? (
           <SafeAreaView>

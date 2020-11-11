@@ -39,7 +39,7 @@ const WorkoutSelection = (props) => {
     } else {
       await axios
         .get(
-          `http://localhost:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
+          `http://138.68.247.11:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
         )
         .then(
           (res) => {
@@ -86,10 +86,29 @@ const WorkoutSelection = (props) => {
             types: [
               {label: 'Upper Body', value: 'upperBody'},
               {label: 'Lower Body', value: 'lowerBack'},
+              {label: 'Core', value: 'core'},
+              {label: 'Power Movements', value: 'powerMovements'},
+              {label: 'HIIT With Resistance', value: 'hiitResistance'},
             ],
           },
-          {label: 'Triceps', value: 'Tricpes'},
-          {label: 'Vertical', value: 'vertical'},
+          {
+            label: 'Speed & Agility',
+            value: 'speed',
+            types: [
+              {label: 'Footwork', value: 'footwork'},
+              {label: 'Get-off Speed', value: 'getSpeed'},
+              {label: 'Change Of Direction', value: 'changeOfDirection'},
+              {label: 'HIIT Cardio', value: 'hiitCardio'},
+            ],
+          },
+          {
+            label: 'Mobility & Stability',
+            value: 'mobility',
+            types: [
+              {label: 'Upper Body', value: 'upperBodyMobility'},
+              {label: 'Lower Body', value: 'lowerBodyMobility'},
+            ],
+          },
         ]);
       } else {
         setDrills([
@@ -113,12 +132,14 @@ const WorkoutSelection = (props) => {
 
   const typeOfWorkouts = typeOfDrills.map((ele) => {
     if (ele.types) {
+      console.log(ele.value);
       return (
         <WorkoutWithTypes
           typeOfDrillsSelected={typeOfDrillsSelected}
           handleDrillSelect={setPressedDrill}
           typeOfWorkout={ele.label}
           types={ele.types}
+          value={ele.value}
         />
       );
     } else {

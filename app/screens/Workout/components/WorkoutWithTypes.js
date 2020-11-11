@@ -13,6 +13,9 @@ import DribbleImage from '../../../../assets/kyrie-irving-dribbling.jpg';
 import FreeThrowImage from '../../../../assets/kyle-korver-free-throw.jpg';
 import PickBallHandlerImage from '../../../../assets/jamal-murray-pick-and-roll.jpg';
 import DefenseImage from '../../../../assets/kawhi-defense.jpg';
+import StrengthImage from '../../../../assets/strength-photo.jpg';
+import SpeedImage from '../../../../assets/speed-photo.jpg';
+import MobilityImage from '../../../../assets/mobility-image.jpg';
 
 const WorkoutWithTypes = (props) => {
   const stuff = () => {
@@ -29,6 +32,12 @@ const WorkoutWithTypes = (props) => {
         return PickBallHandlerImage;
       case 'defense':
         return DefenseImage;
+      case 'strength':
+        return StrengthImage;
+      case 'speed':
+        return SpeedImage;
+      case 'mobility':
+        return MobilityImage;
     }
   };
 

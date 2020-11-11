@@ -42,7 +42,7 @@ const StartWorkout = (props) => {
             width: 300,
           }}
           title="Basketball Training"
-          titleStyle={{color: 'white'}}
+          titleStyle={{color: 'white', fontFamily: 'helvetica'}}
         />
         <Button
           // icon={<Icon name="code" color="#ffffff" />}
@@ -55,10 +55,29 @@ const StartWorkout = (props) => {
                   types: [
                     {label: 'Upper Body', value: 'upperBody'},
                     {label: 'Lower Body', value: 'lowerBack'},
+                    {label: 'Core', value: 'core'},
+                    {label: 'Power Movements', value: 'powerMovements'},
+                    {label: 'HIIT With Resistance', value: 'hiitResistance'},
                   ],
                 },
-                {label: 'Triceps', value: 'Tricpes'},
-                {label: 'Vertical', value: 'vertical'},
+                {
+                  label: 'Speed & Agility',
+                  value: 'speed',
+                  types: [
+                    {label: 'Footwork', value: 'footwork'},
+                    {label: 'Get-off Speed', value: 'getSpeed'},
+                    {label: 'Change Of Direction', value: 'changeOfDirection'},
+                    {label: 'HIIT Cardio', value: 'hiitCardio'},
+                  ],
+                },
+                {
+                  label: 'Mobility & Stability',
+                  value: 'mobility',
+                  types: [
+                    {label: 'Upper Body', value: 'upperBodyMobility'},
+                    {label: 'Lower Body', value: 'lowerBodyMobility'},
+                  ],
+                },
               ],
               type: 'strength',
             })
@@ -72,7 +91,7 @@ const StartWorkout = (props) => {
             marginBottom: 0,
             width: 300,
           }}
-          titleStyle={{color: 'white'}}
+          titleStyle={{color: 'white', fontFamily: 'helvetica'}}
           title="Athlete Training"
         />
       </View>

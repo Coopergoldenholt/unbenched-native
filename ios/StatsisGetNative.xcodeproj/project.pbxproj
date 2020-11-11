@@ -13,12 +13,11 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1ABDF6CB01C0D6E7BCAD0CAD /* libPods-StatsisGetNative-StatsisGetNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3606BB56126C53A8213CB68 /* libPods-StatsisGetNative-StatsisGetNativeTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* StatsisGetNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* StatsisGetNativeTests.m */; };
 		546863BEDA8B2782E2CC433F /* libPods-StatsisGetNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9DD1B153FF054853646FF3 /* libPods-StatsisGetNative.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A3263F8BBBD3DFCA2642FDB2 /* libPods-StatsisGetNative-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E1F79F433E64A53ABED5B3 /* libPods-StatsisGetNative-tvOSTests.a */; };
+		C65AFD31255B622100E977AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65AFD33255B622100E977AD /* LaunchScreen.storyboard */; };
 		C6D4016C2548E145009DDA34 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D4016B2548E145009DDA34 /* StoreKit.framework */; };
 		DD120F7B9AE95C65D87D4ECB /* libPods-StatsisGetNative-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3603C8A345DDA60FDBF8D3 /* libPods-StatsisGetNative-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,7 @@
 		056C7B503A0BE25E407C89FD /* Pods-StatsisGetNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatsisGetNative.release.xcconfig"; path = "Target Support Files/Pods-StatsisGetNative/Pods-StatsisGetNative.release.xcconfig"; sourceTree = "<group>"; };
 		06E1F79F433E64A53ABED5B3 /* libPods-StatsisGetNative-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StatsisGetNative-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3603C8A345DDA60FDBF8D3 /* libPods-StatsisGetNative-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StatsisGetNative-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* StatsisGetNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatsisGetNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* UnBenched.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnBenched.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = StatsisGetNative/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = StatsisGetNative/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = StatsisGetNative/Images.xcassets; sourceTree = "<group>"; };
@@ -58,10 +57,10 @@
 		2D02E47B1E0B4A5D006451C7 /* StatsisGetNative-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StatsisGetNative-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* StatsisGetNative-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StatsisGetNative-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CFCA7BE32BF129F6226EA1D /* Pods-StatsisGetNative-StatsisGetNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatsisGetNative-StatsisGetNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-StatsisGetNative-StatsisGetNativeTests/Pods-StatsisGetNative-StatsisGetNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = StatsisGetNative/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B40F4B84A7F1851854837931 /* Pods-StatsisGetNative-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatsisGetNative-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-StatsisGetNative-tvOSTests/Pods-StatsisGetNative-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9DD1B153FF054853646FF3 /* libPods-StatsisGetNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StatsisGetNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B34F02137AA0077676695F /* Pods-StatsisGetNative-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatsisGetNative-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-StatsisGetNative-tvOSTests/Pods-StatsisGetNative-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C65AFD32255B622100E977AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C67458012543AC1B0049642A /* StatsisGetNative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = StatsisGetNative.entitlements; path = StatsisGetNative/StatsisGetNative.entitlements; sourceTree = "<group>"; };
 		C6D4016B2548E145009DDA34 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CD1801F76691AB924C67C389 /* Pods-StatsisGetNative-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatsisGetNative-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-StatsisGetNative-tvOS/Pods-StatsisGetNative-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,7 +134,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				C65AFD33255B622100E977AD /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = StatsisGetNative;
@@ -180,7 +179,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* StatsisGetNative.app */,
+				13B07F961A680F5B00A75B9A /* UnBenched.app */,
 				00E356EE1AD99517003FC87E /* StatsisGetNativeTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* StatsisGetNative-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* StatsisGetNative-tvOSTests.xctest */,
@@ -244,7 +243,7 @@
 			);
 			name = StatsisGetNative;
 			productName = StatsisGetNative;
-			productReference = 13B07F961A680F5B00A75B9A /* StatsisGetNative.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* UnBenched.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* StatsisGetNative-tvOS */ = {
@@ -347,7 +346,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				C65AFD31255B622100E977AD /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +355,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +674,18 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		C65AFD33255B622100E977AD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C65AFD32255B622100E977AD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = StatsisGetNative;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -733,7 +743,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YJ28VTXCW7;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = StatsisGetNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -742,7 +752,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.unbenched.unbenched;
-				PRODUCT_NAME = StatsisGetNative;
+				PRODUCT_NAME = UnBenched;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -770,7 +780,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.unbenched.unbenched;
-				PRODUCT_NAME = StatsisGetNative;
+				PRODUCT_NAME = UnBenched;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

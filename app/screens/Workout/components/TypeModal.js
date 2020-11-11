@@ -39,12 +39,20 @@ const TypeModal = (props) => {
         <View style={styles.scrollableModal}>
           <ScrollView scrollEventThrottle={16}>
             {drillDisplay}
-
-            <Button
-              title="Close"
-              onPress
-              onPress={() => props.setPressedDrill(undefined)}
-            />
+            <View style={{alignItems: 'center', marginTop: 20}}>
+              <Button
+                title="Close"
+                buttonStyle={{
+                  borderRadius: 3,
+                  backgroundColor: '#7392B7',
+                  marginLeft: 0,
+                  marginRight: 0,
+                  marginBottom: 0,
+                  width: 300,
+                }}
+                onPress={() => props.setPressedDrill(undefined)}
+              />
+            </View>
           </ScrollView>
         </View>
       </Modal>

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {saveSession} from '../../../ducks/reducers/userReducer';
@@ -28,7 +29,7 @@ function Login(props) {
         // 	email: email,
         // 	password: password,
         // })
-        .post('http://localhost:4169/api/user/login', {
+        .post('http://138.68.247.11:4169/api/user/login', {
           email: email,
           password: password,
         })
@@ -61,12 +62,25 @@ function Login(props) {
         secureTextEntry={true}
       />
 
-      <TouchableOpacity
+      <Button
+        title={'Login'}
+        raised={true}
+        buttonStyle={{backgroundColor: '#7392B7', width: 200}}
+        titleStyle={{color: 'white', fontFamily: 'helvetica'}}
+        onPress={() => handleLogin()}
+        disabled={loading ? true : false}
+        loading={loading ? true : false}
+
+        // loadingStyle
+        // disabledStyle={{backgroundColor: 'grey'}}
+      />
+
+      {/* <TouchableOpacity
         style={styles.button}
         onPress={loading ? null : () => handleLogin()}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      {loading ? <ActivityIndicator size="large" color="" /> : null}
+      {loading ? <ActivityIndicator size="large" color="" /> : null} */}
     </ImageBackground>
   );
 }

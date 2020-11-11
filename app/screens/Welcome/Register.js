@@ -30,7 +30,7 @@ function Register(props) {
       Alert.alert('Please Enter Your Name');
     } else {
       axios
-        .post('http://localhost:4169/api/user/register', {
+        .post('http://138.68.247.11:4169/api/user/register', {
           email: email,
           password: password,
           firstName: name.firstName,

@@ -13,19 +13,15 @@ const DefaultSetting = (props) => {
 
   const handleDefaultEntry = () => {
     axios
-      .post('http://localhost:4169/api/user/default-season', {id: gymType})
+      .post('http://138.68.247.11:4169/api/user/default-season', {id: gymType})
       .then((res) => {
-        console.log(res.data);
         props.saveSession(res.data);
       });
   };
 
   return (
     <SafeAreaView>
-      <Text>
-        Let us know what kind of gym equipemnt you have for your Athleate
-        Training
-      </Text>
+      <Text>What equipment do you have?</Text>
       <DropDownPicker
         items={[
           {label: 'Full Gym (Weights, BenchPress, SquatRack, etc.)', value: 1},

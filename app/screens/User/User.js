@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {SafeAreaView, Text, Alert, View} from 'react-native';
 import {Button, Avatar} from 'react-native-elements';
 import {connect} from 'react-redux';
+import axios from 'axios';
+
+import {destroySession} from '../../../ducks/reducers/userReducer';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -18,19 +21,37 @@ const User = (props) => {
   const defaultGym = () => {
     switch (props.user.athleteGymDefault) {
       case '1':
-        return <Text>Full Gym</Text>;
+        return (
+          <Text style={{fontSize: 20, fontFamily: 'helvetica'}}>Full Gym</Text>
+        );
       case '2':
-        return <Text>Home Gym</Text>;
+        return (
+          <Text style={{fontSize: 20, fontFamily: 'helvetica'}}>Home Gym</Text>
+        );
       case '3':
-        return <Text>Nothing</Text>;
+        return (
+          <Text style={{fontSize: 20, fontFamily: 'helvetica'}}>Nothing</Text>
+        );
     }
   };
 
-  console.log(props.user.athleteGymDefault);
+  const logout = async () => {
+    const sessionReturn = await axios
+      .post('http://138.68.247.11:4169/api/user/logout')
+      .then((res) => {
+        props.destroySession();
+      });
+  };
 
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
-      <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          margin: 20,
+        }}>
         <Avatar
           size="large"
           rounded
@@ -39,26 +60,57 @@ const User = (props) => {
               'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
           }}
         />
-        <Text>{props.user.name}</Text>
+        <Text style={{fontSize: 30, fontFamily: 'helvetica'}}>
+          {props.user.name}
+        </Text>
+      </View>
+      <View style={{alignItems: 'flex-end', marginRight: 20}}>
+        <Button
+          title="Change Defaults"
+          buttonStyle={{
+            borderRadius: 3,
+            backgroundColor: '#7392B7',
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            width: 160,
+            fontFamily: 'helvetica',
+          }}
+          onPress={() => props.navigation.navigate('DefaultGym')}
+          titleStyle={{fontFamily: 'helvetica'}}
+        />
       </View>
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          margin: 10,
+          margin: 20,
         }}>
+        <Text style={{fontSize: 20, fontFamily: 'helvetica'}}>
+          Default Gym:
+        </Text>
         {defaultGym()}
+      </View>
+      <View style={{alignItems: 'center'}}>
         <Button
-          title="Change Default Gym"
-          onPress={() => props.navigation.navigate('DefaultGym')}
+          buttonStyle={{
+            borderRadius: 3,
+            backgroundColor: '#7392B7',
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            width: 320,
+          }}
+          title="Log Out"
+          onPress={() => logout()}
+          titleStyle={{fontFamily: 'helvetica'}}
         />
       </View>
-      <Button title="Log Out" />
     </SafeAreaView>
   );
 };
 
 const mapStateToProps = (state) => state.user;
 
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, {destroySession})(User);

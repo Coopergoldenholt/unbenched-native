@@ -20,7 +20,7 @@ const WorkoutCard = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4169/api/workout/results/${props.id}`)
+      .get(`http://138.68.247.11:4169/api/workout/results/${props.id}`)
       .then((res) => setPreviousWorkouts(res.data));
   }, [props.id]);
 
@@ -38,7 +38,7 @@ const WorkoutCard = (props) => {
     console.log('here');
     setDisplayModal(false);
     await axios
-      .post(`http://localhost:4169/api/workout/complete`, {
+      .post(`http://138.68.247.11:4169/api/workout/complete`, {
         lowValue: lowValue,
         highValue: highValue,
         workoutId: props.id,
