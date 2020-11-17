@@ -54,8 +54,6 @@ function Register(props) {
     }
   };
 
-  console.log(name);
-
   return (
     <ImageBackground
       // source={require('../../assets/home-background.jpg')}

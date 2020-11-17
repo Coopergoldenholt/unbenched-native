@@ -35,7 +35,6 @@ const WorkoutCard = (props) => {
   const perc = Math.round((totalLow / totalHigh) * 10000) / 100;
 
   const completedDrill = async () => {
-    console.log('here');
     setDisplayModal(false);
     await axios
       .post(`http://138.68.247.11:4169/api/workout/complete`, {
@@ -65,6 +64,9 @@ const WorkoutCard = (props) => {
           //   marginTop: 20,
           // }}
         />
+      </View>
+      <View style={{alignItems: 'center', top: 10}}>
+        <Text>Estimated Time: {props.time}</Text>
       </View>
 
       {previousWorkouts[0] ? (
@@ -96,32 +98,34 @@ const WorkoutCard = (props) => {
           </View>
         </SafeAreaView>
       ) : null}
-      {previousWorkouts[0].workout_data ? (
-        <>
-          <View style={{alignItems: 'center'}}>
-            <Button
-              onPress={() => setDisplayModal(!displayModal)}
-              buttonStyle={{
-                backgroundColor: '#7392B7',
-                borderRadius: 3,
-                marginTop: 15,
-                marginLeft: 0,
-                marginRight: 0,
-                marginBottom: 0,
-                width: 300,
-              }}
-              titleStyle={{color: 'black'}}
-              title="Insert Drill"
-            />
-          </View>
-          <InsertWorkoutModal
-            display={displayModal}
-            setModalVisibility={setDisplayModal}
-            completedDrill={completedDrill}
-            setLowValue={setLowValue}
-            setHighValue={setHighValue}
-          />{' '}
-        </>
+      {previousWorkouts[0] ? (
+        previousWorkouts[0].workout_data ? (
+          <>
+            <View style={{alignItems: 'center'}}>
+              <Button
+                onPress={() => setDisplayModal(!displayModal)}
+                buttonStyle={{
+                  backgroundColor: '#7392B7',
+                  borderRadius: 3,
+                  marginTop: 15,
+                  marginLeft: 0,
+                  marginRight: 0,
+                  marginBottom: 0,
+                  width: 300,
+                }}
+                titleStyle={{color: 'black'}}
+                title="Insert Drill"
+              />
+            </View>
+            <InsertWorkoutModal
+              display={displayModal}
+              setModalVisibility={setDisplayModal}
+              completedDrill={completedDrill}
+              setLowValue={setLowValue}
+              setHighValue={setHighValue}
+            />{' '}
+          </>
+        ) : null
       ) : (
         <View
           style={{

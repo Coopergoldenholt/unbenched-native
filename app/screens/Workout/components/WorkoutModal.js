@@ -132,7 +132,6 @@ const WorkoutSelection = (props) => {
 
   const typeOfWorkouts = typeOfDrills.map((ele) => {
     if (ele.types) {
-      console.log(ele.value);
       return (
         <WorkoutWithTypes
           typeOfDrillsSelected={typeOfDrillsSelected}

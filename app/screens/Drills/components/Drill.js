@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ActivityIndicator,
+  Keyboard,
 } from 'react-native';
 import axios from 'axios';
 import {Button} from 'react-native-elements';
@@ -31,8 +32,6 @@ const Drill = (props) => {
       });
   }, [props.id]);
 
-  console.log(drill);
-
   let totalHigh = previousWorkouts.reduce((acc, ele) => {
     return (acc += parseInt(ele.high_value));
   }, 0);
@@ -47,7 +46,6 @@ const Drill = (props) => {
   const perc = Math.round((totalLow / totalHigh) * 10000) / 100;
 
   const completedDrill = async () => {
-    console.log('here');
     setModalVisibility(false);
     await axios
       .post(`http://138.68.247.11:4169/api/workout/complete`, {
@@ -85,7 +83,9 @@ const Drill = (props) => {
           />
         ) : null}
       </View>
-      <Text>{`Estimated Time: ${drill.time}`}</Text>
+      <View style={{alignItems: 'center', top: 10, marginBottom: 10}}>
+        <Text>{`Estimated Time: ${drill.time}`}</Text>
+      </View>
       {drill.workout_data ? (
         previousWorkouts[0] ? (
           <SafeAreaView>

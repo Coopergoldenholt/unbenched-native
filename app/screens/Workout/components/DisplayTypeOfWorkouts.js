@@ -15,7 +15,6 @@ import PickBallHandlerImage from '../../../../assets/jamal-murray-pick-and-roll.
 import DefenseImage from '../../../../assets/kawhi-defense.jpg';
 
 const CollectTime = (props) => {
-  console.log(props.value);
   const stuff = () => {
     switch (props.value) {
       case 'scoring':

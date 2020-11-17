@@ -1,24 +1,44 @@
 import React from 'react';
-import {Text, View, StyleSheet, TextInput} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import {Button, Input, Icon} from 'react-native-elements';
 
 const DrillStatModal = (props) => {
   return (
-    <View>
+    <View onPress={Keyboard.dismiss}>
       <Modal style={styles.modal} isVisible={props.display}>
         <View style={styles.container}>
-          <Input
-            onChangeText={(text) => props.setLowValue(text)}
-            placeholder={props.lowValueName}
-            keyboardType="numeric"
-            containerStyle={{marginTop: 20}}
-          />
-          <Input
-            onChangeText={(text) => props.setHighValue(text)}
-            placeholder={props.highValueName}
-            keyboardType="numeric"
-          />
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}>
+            <View>
+              <Input
+                onChangeText={(text) => props.setLowValue(text)}
+                placeholder={props.lowValueName}
+                keyboardType="numeric"
+                containerStyle={{marginTop: 20}}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}>
+            <View>
+              <Input
+                onChangeText={(text) => props.setHighValue(text)}
+                placeholder={props.highValueName}
+                keyboardType="numeric"
+              />
+            </View>
+          </TouchableWithoutFeedback>
 
           <View style={styles.buttonContainer}>
             <Button
