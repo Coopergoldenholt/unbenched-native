@@ -2,13 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
-  View,
   Alert,
   TouchableOpacity,
   TextInput,
-  Picker,
   ImageBackground,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {saveSession} from '../../../ducks/reducers/userReducer';
@@ -18,6 +17,9 @@ function Register(props) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState({firstName: undefined, lastName: undefined});
+  const [loading, setLoading] = useState(false);
+
+  console.log(props.user);
 
   const handleRegister = () => {
     if (!email) {
@@ -29,6 +31,7 @@ function Register(props) {
     } else if (!name) {
       Alert.alert('Please Enter Your Name');
     } else {
+      setLoading(true);
       axios
         .post('http://138.68.247.11:4169/api/user/register', {
           email: email,
@@ -41,22 +44,18 @@ function Register(props) {
         // 	password: password,
         // 	name: name,
         // })
-        .then((res) =>
-          props.saveSession(
-            res.data.companyId,
-            res.data.email,
-            res.data.id,
-            res.data.loggedIn,
-            res.data.user,
-          ),
-        )
+        .then((res) => {
+          setLoading(false);
+          console.log(res.data);
+          props.saveSession(res.data);
+        })
         .catch((err) => Alert.alert(err.response.data));
     }
   };
 
   return (
     <ImageBackground
-      // source={require('../../assets/home-background.jpg')}
+      source={require('../../../assets/login-background.jpg')}
       style={styles.background}>
       <TextInput
         placeholder="First Name"
@@ -97,9 +96,18 @@ function Register(props) {
 
       {/* <Image source={{"https://static.thenounproject.com/png/1081856-200.png"}} /> */}
 
-      <TouchableOpacity style={styles.button} onPress={() => handleRegister()}>
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
+      <Button
+        title={'Register'}
+        raised={true}
+        buttonStyle={{backgroundColor: '#7392B7', width: 200}}
+        titleStyle={{color: 'white', fontFamily: 'helvetica'}}
+        onPress={() => handleRegister()}
+        disabled={loading ? true : false}
+        loading={loading ? true : false}
+
+        // loadingStyle
+        // disabledStyle={{backgroundColor: 'grey'}}
+      />
     </ImageBackground>
   );
 }

@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../../app/screens/Welcome/WelcomeScreen';
 import Login from '../../app/screens/Welcome/Login';
 import Register from '../../app/screens/Welcome/Register';
-import Subscribe from '../../app/screens/Subscribe/Subscribe';
+import Subscribe from '../../app/screens/Welcome/Subscribe';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +26,7 @@ const AuthenticationStack = (props) => {
       }}>
       <Stack.Screen
         name="Home"
-        component={Home}
+        component={Subscribe}
         options={{
           headerTitle: () => (
             <Image
@@ -51,18 +51,6 @@ const AuthenticationStack = (props) => {
       <Stack.Screen
         name="Register"
         component={Register}
-        options={{
-          headerTitle: () => (
-            <Image
-              style={{width: 40, height: 40, marginBottom: 10}}
-              source={require('../../assets/Icon_White.png')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Subscribe"
-        component={Subscribe}
         options={{
           headerTitle: () => (
             <Image
