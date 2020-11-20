@@ -6,7 +6,9 @@ import {
   ImageBackground,
   Alert,
   TouchableOpacity,
+  Image,
   TextInput,
+  View,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import axios from 'axios';
@@ -46,8 +48,12 @@ function Login(props) {
 
   return (
     <ImageBackground
-      source={require('../../../assets/login-background.jpg')}
+      source={require('../../../assets/background-picture.png')}
       style={styles.background}>
+      <Image
+        style={{width: 100, height: 100, marginBottom: 30}}
+        source={require('../../../assets/Icon_White.png')}
+      />
       <TextInput
         placeholder="E-mail"
         style={styles.input}
@@ -95,11 +101,12 @@ const styles = StyleSheet.create({
   background: {
     // backgroundColor: "#5a4b49",
     // height: 400,
-    width: '100%',
-    paddingTop: 20,
+
+    // paddingTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    backgroundColor: '#16182f',
   },
   button: {
     width: '50%',

@@ -26,7 +26,7 @@ const AuthenticationStack = (props) => {
       }}>
       <Stack.Screen
         name="Home"
-        component={Subscribe}
+        component={Home}
         options={{
           headerTitle: () => (
             <Image

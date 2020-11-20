@@ -20,30 +20,36 @@ const Subscribe = (props) => {
       console.log('purchase history', res),
     );
 
-    const purchaseUpdateScription = IAP.purchaseUpdatedListener((purchase) => {
-      const receipt = purchase.transactionReceipt;
-      if (receipt) {
-        //call to backend
-        console.log('receipt', receipt);
-        IAP.finishTransaction(purchase);
-      }
-    });
-
     return () => {
       purchaseUpdateScription.remove();
     };
   }, []);
 
+  const purchaseUpdateScription = IAP.purchaseUpdatedListener((purchase) => {
+    const receipt = purchase.transactionReceipt;
+    console.log('receipt', receipt);
+    if (receipt) {
+      //call to backend
+      console.log('receipt', receipt);
+      IAP.finishTransaction(purchase);
+    }
+  });
+
   return (
     <SafeAreaView>
       <View>
         <Text>Hello</Text>
-        {products.map((ele) => (
-          <View>
+        {products.map((ele, indx) => (
+          <View key={indx}>
             <Text>{ele.description}</Text>
+            <Text>{ele.productId}</Text>
             <Button
               title="Subscribe"
-              onPress={() => IAP.requestPurchase(ele.productId)}
+              onPress={() =>
+                IAP.requestPurchase(ele.productId).then((res) =>
+                  console.log(res),
+                )
+              }
             />
           </View>
         ))}

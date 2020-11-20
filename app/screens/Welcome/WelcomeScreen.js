@@ -27,7 +27,7 @@ export default function WelcomeScreen({navigation}) {
 
   return (
     <ImageBackground
-      source={require('../../../assets/login-background.jpg')}
+      source={require('../../../assets/background-picture.png')}
       style={styles.background}>
       {/* <TextInput placeholder="E-mail" style={styles.input} /> */}
       {/* <Image source={{"https://static.thenounproject.com/png/1081856-200.png"}} /> */}

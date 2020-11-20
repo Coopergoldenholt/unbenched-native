@@ -23,6 +23,8 @@ const DrillCategories = (props) => {
           drill={ele}
           navigation={props.navigation}
           title={ele.name}
+          addDrillToWorkout={props.addDrillToWorkout}
+          buildOwnWorkout={props.buildOwnWorkout}
         />
       );
     });
