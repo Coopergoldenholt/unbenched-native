@@ -11,6 +11,7 @@ import axios from 'axios';
 import InsertWorkoutModal from '../../Drills/components/EnterDrillStatsModal';
 import {Button} from 'react-native-elements';
 import {WebView} from 'react-native-webview';
+import {URL} from '../../../../config';
 
 const WorkoutCard = (props) => {
   const [previousWorkouts, setPreviousWorkouts] = useState([]);
@@ -19,9 +20,9 @@ const WorkoutCard = (props) => {
   const [highValue, setHighValue] = useState(0);
 
   useEffect(() => {
-    axios
-      .get(`http://138.68.247.11:4169/api/workout/results/${props.id}`)
-      .then((res) => setPreviousWorkouts(res.data));
+    axios.get(`${URL}/api/workout/results/${props.id}`).then((res) => {
+      setPreviousWorkouts(res.data);
+    });
   }, [props.id]);
 
   let totalHigh = previousWorkouts.reduce((acc, ele) => {
@@ -37,7 +38,7 @@ const WorkoutCard = (props) => {
   const completedDrill = async () => {
     setDisplayModal(false);
     await axios
-      .post(`http://138.68.247.11:4169/api/workout/complete`, {
+      .post(`${URL}/api/workout/complete`, {
         lowValue: lowValue,
         highValue: highValue,
         workoutId: props.id,
@@ -75,8 +76,8 @@ const WorkoutCard = (props) => {
             {previousWorkouts[0].percentages ? (
               <>
                 <Text style={styles.text}>
-                  Last Workout:{' '}
-                  {`${previousWorkouts[0].low_value}/${previousWorkouts[0].high_value}`}{' '}
+                  Last Workout:
+                  {`${previousWorkouts[0].low_value}/${previousWorkouts[0].high_value}`}
                 </Text>
                 {/* <Text>Percentage: </Text> */}
                 <Text style={styles.text}>
@@ -86,13 +87,13 @@ const WorkoutCard = (props) => {
                       10000,
                   ) / 100}
                   %
-                </Text>{' '}
+                </Text>
               </>
             ) : null}
           </View>
           <View style={styles.previousWorkout}>
             <Text style={styles.text}>
-              Total: {totalLow}/{totalHigh}{' '}
+              Total: {totalLow}/{totalHigh}
             </Text>
             <Text style={styles.text}>{perc}%</Text>
           </View>
@@ -123,7 +124,7 @@ const WorkoutCard = (props) => {
               completedDrill={completedDrill}
               setLowValue={setLowValue}
               setHighValue={setHighValue}
-            />{' '}
+            />
           </>
         ) : null
       ) : (

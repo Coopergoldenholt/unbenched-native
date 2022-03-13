@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 
+import Dashboard from '../../app/screens/Dashboard/Dashboard';
 import User from '../../app/screens/User/User';
 import UserStack from './UserStack';
 import WorkoutStack from './WorkoutStack';
@@ -18,13 +19,20 @@ const DashBoardStack = (props) => {
         // showLabel: false,
         // style: {backgroundColor: '#7392B7'},
       }}>
-      {/* <Tab.Screen name="Dashboard" component={Dashboard} />
-      <Tab.Screen name="Games" component={Games} /> */}
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
+        }}
+      />
+
       <Tab.Screen
         name="Workout"
         component={WorkoutStack}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Generator',
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
         }}
       />

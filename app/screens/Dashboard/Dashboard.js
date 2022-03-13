@@ -9,93 +9,66 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {WebView} from 'react-native-webview';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
-import SeasonAverages from './components/Averages/SeasonAverages';
-import EnterGameModule from './components/Game/EnterGameModule';
-import NewGameModal from './components/Game/NewGameModal';
-import Trends from './components/Trends/Trends';
-import Help from './components/Help/Help';
-
+import OldWorkoutModal from './components/OldWorkoutModal';
 import {setGames} from '../../../ducks/reducers/gamesReducer';
 import {saveAverages, saveGoals} from '../../../ducks/reducers/seasonReducer';
 
 const Dashboard = (props) => {
-  const [displayAddGame, setDisplayAddGame] = useState(false);
-  const [displayNewGame, setDisplayNewGame] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [previousWorkouts, setPreviousWorkouts] = useState([]);
+  const [showOldWorkoutModal, setOldWorkoutModal] = useState(false);
+  const [oldWorkout, setOldWorkout] = useState([]);
+  const [dateSelected, setDateSelected] = useState();
 
   useEffect(() => {
-    getProps();
+    axios.get('http://localhost:4169/api/workout').then((res) => {
+      setPreviousWorkouts(res.data);
+    });
   }, []);
-  const getProps = () => {
-    setLoading(true);
-    axios.get('http://localhost:4169/api/user/season/averages').then((res) => {
-      props.saveAverages(res.data);
-    });
-    axios.get('http://localhost:4169/api/user/season/games').then((res) => {
-      props.setGames(res.data);
-    });
-    axios
-      .get(
-        `http://localhost:4169/api/user/season/goals/${props.user.user.defaultSeason.id}`,
-      )
-      .then((res) => {
-        props.saveGoals(res.data);
-      });
 
-    setLoading(false);
+  const dayWorkout = (day) => {
+    setOldWorkoutModal(false);
+    let workout = previousWorkouts.filter((ele) => {
+      let date = ele.date.slice(0, 10);
+      return date === day.dateString;
+    });
+    setDateSelected(day);
+    setOldWorkout(workout);
+    setOldWorkoutModal(true);
   };
+
+  const dates = previousWorkouts.map((ele) => {
+    let date = ele.date.slice(0, 10);
+
+    return {[date]: {selected: true, selectedColor: '#a8e0a3'}};
+  });
+
+  let stuff = dates.reduce(function (result, item) {
+    let key = Object.keys(item)[0];
+    result[key] = item[key];
+    return result;
+  }, {});
 
   return (
     <SafeAreaView style={styles.container}>
-      <EnterGameModule
-        displayGame={setDisplayAddGame}
-        display={displayAddGame}
-      />
-      <NewGameModal
-        setGames={props.setGames}
-        displayGame={setDisplayNewGame}
-        display={displayNewGame}
-      />
       <ScrollView>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setDisplayAddGame(true)}>
-          <Text>Add Game</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setDisplayNewGame(true)}>
-          <Text>Start Game</Text>
-        </TouchableOpacity>
+        {/* <OldWorkoutModal
+          isVisible={showOldWorkoutModal}
+          workout={oldWorkout}
+          date={dateSelected}
+          cancel={() => setOldWorkoutModal(false)}
+        /> */}
         <View style={styles.card}>
-          {props.season.averages ? (
-            <SeasonAverages averages={props.season.averages} type="season" />
-          ) : null}
-          {props.season.goals ? (
-            <SeasonAverages averages={props.season.goals} type="goals" />
-          ) : null}
+          <Calendar
+            horizontal={true}
+            enableSwipeMonths={true}
+            markedDates={stuff}
+            onDayPress={(day) => {
+              dayWorkout(day);
+            }}
+          />
         </View>
-        <View style={styles.card}>
-          <Trends />
-        </View>
-        <View style={styles.card}>
-          {props.season.averages && props.season.goals ? <Help /> : null}
-        </View>
-        <WebView
-          style={{flex: 1}}
-          javaScriptEnabled={true}
-          source={{
-            uri: 'https://www.youtube.com/embed/TXZED8duLxI',
-          }}
-          style={{
-            width: 200,
-            height: 200,
-            backgroundColor: 'blue',
-            marginTop: 20,
-          }}
-        />
       </ScrollView>
     </SafeAreaView>
   );

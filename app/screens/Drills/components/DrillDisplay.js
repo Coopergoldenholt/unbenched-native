@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 
 const DrillDisplay = (props) => {
+  const [selected, setSelected] = useState(false);
+
   return (
     <View style={styles.container}>
       {props.buildOwnWorkout ? (
-        <TouchableOpacity onPress={() => props.addDrillToWorkout(props.drill)}>
-          <Icon name={'plus'} size={30} color="black" />
-        </TouchableOpacity>
+        !props.added[0] ? (
+          <TouchableOpacity
+            style={styles.iconContainer}
+            onPress={() => props.addDrillToWorkout(props.drill)}>
+            <Icon name={'plus'} size={30} color="black" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.iconContainer}
+            onPress={() => props.addDrillToWorkout(props.drill)}>
+            <Icon name={'minus'} size={30} color="black" />
+          </TouchableOpacity>
+        )
       ) : null}
       <TouchableOpacity
         onPress={() =>
@@ -19,9 +31,11 @@ const DrillDisplay = (props) => {
           })
         }
         style={styles.drillContainer}>
-        <View style={{alignItems: 'center'}}>
+        <View style={{alignItems: 'flex-start', justifyContent: 'center'}}>
           <Text style={{fontSize: 18}}>{props.title}</Text>
-          <Text>Estimated Time: {props.drill.time}</Text>
+          <View style={{alignItems: 'flex-start'}}>
+            <Text>Estimated Time: {props.drill.time}</Text>
+          </View>
         </View>
         <Icon name={'chevron-right'} size={30} color="black" />
       </TouchableOpacity>
@@ -34,18 +48,23 @@ export default DrillDisplay;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    // alignItems: 'center',
+    // justifyContent: 'flex-start',
 
-    marginLeft: 30,
-    marginRight: 15,
-    marginBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 15,
+    paddingBottom: 15,
+  },
+  iconContainer: {
+    paddingRight: 5,
   },
   drillContainer: {
+    width: '90%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderColor: 'black',
+    paddingBottom: 5,
+    borderBottomColor: 'grey',
     borderBottomWidth: 1,
   },
 });

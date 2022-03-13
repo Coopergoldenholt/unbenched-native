@@ -4,6 +4,7 @@ import {View, Text, SafeAreaView} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {URL} from '../../../config';
 
 import {saveSession} from '../../../ducks/reducers/userReducer';
 import {Button} from 'react-native-elements';
@@ -12,11 +13,9 @@ const DefaultSetting = (props) => {
   const [gymType, setGymType] = useState();
 
   const handleDefaultEntry = () => {
-    axios
-      .post('http://138.68.247.11:4169/api/user/default-season', {id: gymType})
-      .then((res) => {
-        props.saveSession(res.data);
-      });
+    axios.post(`${URL}/api/user/default-season`, {id: gymType}).then((res) => {
+      props.saveSession(res.data);
+    });
     props.navigation.goBack();
   };
 

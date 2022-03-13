@@ -50,7 +50,6 @@ const DisplayWorkout = (props) => {
       return indx === workoutIndex;
     })
     .map((ele) => {
-      console.log(ele);
       return (
         <View style={styles.card}>
           <WorkoutCard

@@ -1,7 +1,8 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 import axios from 'axios';
+import {URL} from '../../../config';
 
 import {Button} from 'react-native-elements';
 import DrillCategories from './components/DrillCategories';
@@ -12,17 +13,20 @@ const Drills = (props) => {
   const [buildOwnWorkout, setBuildOwnWorkout] = useState(false);
 
   useEffect(() => {
-    axios
-      .get('http://138.68.247.11:4169/api/drills')
-      .then((res) => setDrills(res.data));
+    axios.get(`${URL}/api/drills`).then((res) => setDrills(res.data));
   }, []);
 
   useEffect(() => {}, [workout]);
 
   const addDrillToWorkout = (drill) => {
-    let work = workout;
-    work.push(drill);
-    setWorkout(work);
+    const newWorkout = workout.filter((ele) => ele.id !== drill.id);
+    if (newWorkout.length < workout.length) {
+      console.log('hello');
+
+      setWorkout(newWorkout);
+    } else {
+      setWorkout([...workout, drill]);
+    }
   };
 
   const handleCancel = () => {
@@ -30,13 +34,17 @@ const Drills = (props) => {
     setBuildOwnWorkout(false);
   };
 
-  console.log(workout);
+  const handleWorkout = () => {
+    props.navigation.navigate('DisplayWorkout', {workout: workout});
+  };
+
   return (
-    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+    <ScrollView style={{backgroundColor: 'white', flex: 1}}>
       <View>
         {buildOwnWorkout ? (
           <View>
             <Button onPress={() => handleCancel()} title="Cancel" />
+            <Button onPress={() => handleWorkout()} title="Start Workout" />
           </View>
         ) : (
           <Button
@@ -53,6 +61,7 @@ const Drills = (props) => {
           navigation={props.navigation}
           addDrillToWorkout={addDrillToWorkout}
           buildOwnWorkout={buildOwnWorkout}
+          workout={workout}
         />
         <DrillCategories
           drills={drills}
@@ -61,6 +70,7 @@ const Drills = (props) => {
           navigation={props.navigation}
           addDrillToWorkout={addDrillToWorkout}
           buildOwnWorkout={buildOwnWorkout}
+          workout={workout}
         />
         <DrillCategories
           type="dribbling"
@@ -69,6 +79,7 @@ const Drills = (props) => {
           navigation={props.navigation}
           addDrillToWorkout={addDrillToWorkout}
           buildOwnWorkout={buildOwnWorkout}
+          workout={workout}
         />
         <DrillCategories
           type="free_throws"
@@ -77,6 +88,7 @@ const Drills = (props) => {
           navigation={props.navigation}
           addDrillToWorkout={addDrillToWorkout}
           buildOwnWorkout={buildOwnWorkout}
+          workout={workout}
         />
         <DrillCategories
           type="pick_and_roll_ball_handler"
@@ -85,6 +97,7 @@ const Drills = (props) => {
           navigation={props.navigation}
           addDrillToWorkout={addDrillToWorkout}
           buildOwnWorkout={buildOwnWorkout}
+          workout={workout}
         />
         <DrillCategories
           type="defense"
@@ -93,9 +106,10 @@ const Drills = (props) => {
           navigation={props.navigation}
           addDrillToWorkout={addDrillToWorkout}
           buildOwnWorkout={buildOwnWorkout}
+          workout={workout}
         />
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

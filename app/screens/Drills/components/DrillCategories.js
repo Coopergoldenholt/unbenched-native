@@ -20,17 +20,21 @@ const DrillCategories = (props) => {
     .map((ele) => {
       return (
         <DrillDisplay
+          added={props.workout.filter((workoutDrill) => {
+            return workoutDrill.id === ele.id;
+          })}
           drill={ele}
           navigation={props.navigation}
           title={ele.name}
           addDrillToWorkout={props.addDrillToWorkout}
           buildOwnWorkout={props.buildOwnWorkout}
+          workout={props.workout}
         />
       );
     });
 
   return (
-    <>
+    <View style={styles.parentContainer}>
       <TouchableOpacity
         style={styles.container}
         onPress={() => setSelected(!selected)}>
@@ -42,21 +46,27 @@ const DrillCategories = (props) => {
           color="black"
         />
       </TouchableOpacity>
-      {/* <DrillCategories /> */}
       {selected ? filterDrills : null}
-    </>
+
+      {/* <DrillCategories /> */}
+    </View>
   );
 };
 
 export default DrillCategories;
 
 const styles = StyleSheet.create({
+  parentContainer: {
+    borderColor: 'black',
+    borderBottomWidth: 1,
+  },
   container: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginRight: 15,
-    marginLeft: 10,
+    paddingRight: 15,
+    paddingLeft: 10,
     marginBottom: 20,
     marginTop: 20,
   },

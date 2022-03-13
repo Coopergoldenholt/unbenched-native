@@ -14,7 +14,10 @@ import {Button, Input, Icon} from 'react-native-elements';
 const DrillStatModal = (props) => {
   return (
     <View onPress={Keyboard.dismiss}>
-      <Modal style={styles.modal} isVisible={props.display}>
+      <Modal
+        style={styles.modal}
+        isVisible={props.display}
+        avoidKeyboard={true}>
         <View style={styles.container}>
           <TouchableWithoutFeedback
             onPress={Keyboard.dismiss}
@@ -82,9 +85,10 @@ const styles = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
     margin: 0,
+    height: '40%',
   },
   container: {
-    height: '40%',
+    // height: '40%',
     backgroundColor: 'white',
   },
   buttonContainer: {

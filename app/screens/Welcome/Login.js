@@ -13,6 +13,7 @@ import {
 import {Button} from 'react-native-elements';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {URL} from '../../../config';
 import {saveSession} from '../../../ducks/reducers/userReducer';
 
 function Login(props) {
@@ -31,7 +32,7 @@ function Login(props) {
         // 	email: email,
         // 	password: password,
         // })
-        .post('http://138.68.247.11:4169/api/user/login', {
+        .post(`${URL}/api/user/login`, {
           email: email,
           password: password,
         })

@@ -14,7 +14,7 @@ import {Button} from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import axios from 'axios';
 import {connect} from 'react-redux';
-
+import {URL} from '../../../../config';
 import {startWorkout} from '../../../../ducks/reducers/workoutReducer';
 
 import DisplayTypeOfWorkout from './DisplayTypeOfWorkouts';
@@ -39,7 +39,7 @@ const WorkoutSelection = (props) => {
     } else {
       await axios
         .get(
-          `http://138.68.247.11:4169/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
+          `${URL}/api/workout/custom?time=${timeSelected}&workoutItems=${typeOfDrillsSelected}`,
         )
         .then(
           (res) => {
@@ -49,6 +49,7 @@ const WorkoutSelection = (props) => {
                 'Workout is not possible, try different settings',
               );
             } else {
+              console.log('data', res.data);
               props.navigation.navigate('DisplayWorkout', {workout: res.data});
             }
           },

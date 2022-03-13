@@ -3,6 +3,7 @@ import {SafeAreaView, Text, Alert, View} from 'react-native';
 import {Button, Avatar} from 'react-native-elements';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {URL} from '../../../config';
 
 import {destroySession} from '../../../ducks/reducers/userReducer';
 
@@ -37,7 +38,7 @@ const User = (props) => {
 
   const logout = async () => {
     const sessionReturn = await axios
-      .post('http://138.68.247.11:4169/api/user/logout')
+      .post(`${URL}/api/user/logout`)
       .then((res) => {
         props.destroySession();
       });

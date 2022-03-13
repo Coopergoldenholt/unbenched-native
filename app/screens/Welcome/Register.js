@@ -11,6 +11,7 @@ import {Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {saveSession} from '../../../ducks/reducers/userReducer';
+import {URL} from '../../../config';
 
 function Register(props) {
   const [email, setEmail] = useState('');
@@ -33,7 +34,7 @@ function Register(props) {
     } else {
       setLoading(true);
       axios
-        .post('http://138.68.247.11:4169/api/user/register', {
+        .post(`${URL}/api/user/register`, {
           email: email,
           password: password,
           firstName: name.firstName,

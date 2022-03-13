@@ -12,6 +12,7 @@ import {
 import axios from 'axios';
 import {Button} from 'react-native-elements';
 import {WebView} from 'react-native-webview';
+import {URL} from '../../../../config';
 
 import Modal from './EnterDrillStatsModal';
 import {set} from 'react-native-reanimated';
@@ -25,11 +26,9 @@ const Drill = (props) => {
   const [videoLoading, setVideoLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`http://138.68.247.11:4169/api/workout/results/${drill.id}`)
-      .then((res) => {
-        setPreviousWorkouts(res.data);
-      });
+    axios.get(`${URL}/api/workout/results/${drill.id}`).then((res) => {
+      setPreviousWorkouts(res.data);
+    });
   }, [props.id]);
 
   let totalHigh = previousWorkouts.reduce((acc, ele) => {
@@ -48,7 +47,7 @@ const Drill = (props) => {
   const completedDrill = async () => {
     setModalVisibility(false);
     await axios
-      .post(`http://138.68.247.11:4169/api/workout/complete`, {
+      .post(`${URL}/api/workout/complete`, {
         lowValue: lowValue,
         highValue: highValue,
         workoutId: drill.id,
